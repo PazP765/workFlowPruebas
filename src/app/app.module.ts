@@ -16,7 +16,13 @@ import { ViewAceptComponent } from './components/view-acept/view-acept.component
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SesionComponent } from './components/sesion/sesion.component';
 import { RevisionFinComponent } from './components/revision-fin/revision-fin.component';
-import { AdminComponent } from './components/admin/admin.component'
+import { AdminComponent } from './components/admin/admin.component';
+import { SupervisaAreasComponent } from './components/supervisa-areas/supervisa-areas.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FilterRangePipe } from './pipes/filter-range.pipe';
+import { AscDescPipe } from './pipes/asc-desc.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +37,10 @@ import { AdminComponent } from './components/admin/admin.component'
     SesionComponent,
     RevisionFinComponent,
     AdminComponent,
-    
+    SupervisaAreasComponent,
+    FilterRangePipe,
+    AscDescPipe,
+   
   ],
   imports: [
     BrowserModule,
@@ -39,7 +48,10 @@ import { AdminComponent } from './components/admin/admin.component'
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ModalModule.forRoot()
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    ModalModule.forRoot(),
+    
     
   ],
   providers: [],

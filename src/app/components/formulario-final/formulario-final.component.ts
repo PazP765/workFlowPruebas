@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./formulario-final.component.css']
 })
 export class FormularioFinalComponent implements OnInit {
-
+  searchText:any
+  searchTextDisp:any
   constructor() { }
 
   ngOnInit(): void {

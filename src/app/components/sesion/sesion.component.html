@@ -8,32 +8,59 @@
 </head>
 <body>
   
-<app-navbar></app-navbar>
-<br><br><br>
+<!--nav-->
+<nav class=" navbar nav1" style="z-index: 1;" >
+  
+  <a class="navbar-brand" href="#" ><img src="assets/img/logo_bioflex-01.png" style="height: 40px;" alt=""></a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="assets/img/logo_bioflex-01.png"  style="height: 40px;"alt=""></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    
+    <hr class="hr1">
+    <div class="offcanvas-body" >
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+       
+        <li class="nav-item">
+          <a class="nav-link"   style="cursor: pointer"><i class="fas fa-clipboard" style="color: rgb(0, 162, 255);"></i> Mostrar por mécanico</a>
+        </li>
+        
 
+
+        <div class="input-group input-group-sm mb-3" >
+          <input  #identificador  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Ingresa tú número de nómina" name="nomina" id="txtNomina">
+          <button class="btn btn-outline-primary" type="submit" id="button-addon2" (click)="getInputValue(identificador.value)"  >Ir <i class="fas fa-chevron-right"></i></button>
+        </div>
+        <hr>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer" href="#" ><img src="assets/img/logout.png"  style=" height: 25px;">Volver al inicio</a>
+        </li>
+      </ul>
+   </div>
+    </div>
+</nav>
+<!--nav-->
+<br> <br> <br>
 <!-- <tr  *ngFor="let item of datatable"> -->
 
-<nav>
-<div class="nav nav-tabs" id="nav-tab" role="tablist">
-<ul class="nav nav-tabs" >
+  <nav class="nav2" style="--bs-breadcrumb-divider: '>'; " aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/Resumen_Solicitudes">Solicitudes</a></li>>
+      <li class="breadcrumb-item active" aria-current="page" *ngFor="let item of datatable"><i class="fas fa-angle-double-left" ></i>Mecanico/{{item.nomina}}<i class="fas fa-angle-double-right"></i></li>
+  
+    </ol>
    
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Áreas</a>
-    <ul class="dropdown-menu">
-      <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Mostrar todo</a>
-      <a class="nav-link" id="nav-Extruder-tab" data-bs-toggle="tab" data-bs-target="#nav-Extruder" type="button" role="tab" aria-controls="nav-Extruder" aria-selected="false">Extrusión</a>
-<a class="nav-link" id="nav-Print-tab" data-bs-toggle="tab" data-bs-target="#nav-Print" type="button" role="tab" aria-controls="nav-Print" aria-selected="false">Impresión</a>
-<a class="nav-link" id="nav-Lamin-tab" data-bs-toggle="tab" data-bs-target="#nav-Lamin" type="button" role="tab" aria-controls="nav-Lamin" aria-selected="false">Laminado</a>
-<a class="nav-link" id="nav-Pouch-tab" data-bs-toggle="tab" data-bs-target="#nav-Pouch" type="button" role="tab" aria-controls="nav-Pouch" aria-selected="false">Pouch</a>
-<a class="nav-link" id="nav-Bolse-tab" data-bs-toggle="tab" data-bs-target="#nav-Bolse" type="button" role="tab" aria-controls="nav-Bolse" aria-selected="false">Bolseo</a>
-
-    </ul>
-  </li>
-</ul>
-</div>
-
-</nav><br>
- 
+  </nav>
+  <br> <br> 
+  <div class="top fexconte  flex-row mb-3 card" style="border: none;" >
+    <div  class="titulo p-2"></div>
+    
+  </div>
 
 <div class="tab-content" id="nav-tabContent">
 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
@@ -75,7 +102,7 @@
   <!--modales-->
   <!--modal para  salida de activo-->
   <ng-template class="wrapper bg-white" #template>
-    <br><br><br>
+   
     <div class="modal-header">
       <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Diagnoticar. <b [(ngModel)]="serviceModel.idSolicitud" id="mostrarId" name="mostrarId" style="color: red;">{{ serviceModel.idSolicitud }}</b></div>
       <button
@@ -161,24 +188,14 @@
     </button>
    
   </div>
-
-  
     <!--fin-->
   </ng-template>
   <!--modal para  salida de activo-->
 
 
-  
-
-
-
-
-
-  
   <!--modales-->
   <!--modal para  salida de activo-->
   <ng-template class="wrapper bg-white" #template2>
-    <br><br><br>
     <div class="modal-header">
       <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Tareas. <b [(ngModel)]="serviceModel.idSolicitud" id="mostrarId" name="mostrarId" style="color: red;">{{ serviceModel.idSolicitud }}</b></div>
       <button
@@ -189,9 +206,7 @@
       >
         <span aria-hidden="true">&times;</span>
       </button>
-    </div>
-  
-    
+    </div>  
 <form class="rounded mb-0 m-4 p-4 needs-validation novalidate "  >
     <label for="basic-url" class="form-label"><b>Descripción de las tareas:</b></label>
     <div class="input-group input-group-sm mb-3">
@@ -206,14 +221,12 @@
         No
       </label>
     </div>
-
     <div class="form-check">
       <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
       <label class="form-check-label" for="flexRadioDefault2">
         Si
       </label>
     </div>
-    
     <hr>
     <label for="basic-url" class="form-label"><b>Tiempos:</b></label><br>
     <label for="basic-url" class="form-label">Tiempo de paro correctivo:</label>
@@ -231,22 +244,10 @@
         <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-stopwatch"></i></span>
         <input type="number" class="form-control" placeholder="Paro por refacción (minutos)"  id="pr"name="pr" [(ngModel)]="serviceModel.paroRefaccion"required>
       </div>
-
-     
-    
-  
-
-
-
-
-   
 </form>
+
     <!--inicio-->
-   
-   <!-- <div class="h2 text-center">Creativity</div>-->
-      
-     
-            
+   <!-- <div class="h2 text-center">Creativity</div>-->    
    <div class="d-grid gap-2">
     <!-- <button type="button" class="btn btn-success btn.lg" (click)="onSetData(); onAddSolicitud(solicitud)"><i class="fas fa-paper-plane"></i> Solicitar</button> -->
     <button
@@ -260,8 +261,6 @@
       </button>
    
   </div>
-
-  
     <!--fin-->
   </ng-template>
   <!--modal para  salida de activo-->
@@ -269,9 +268,8 @@
 
 
   <ng-template class="wrapper bg-white" #template3>
-    <br><br><br>
     <div class="modal-header">
-      <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Diagnoticar.</div>
+      <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Cierre:<b [(ngModel)]="serviceModel.idSolicitud" id="mostrarId" name="mostrarId" style="color: red;">{{ serviceModel.idSolicitud }}</b></div>
       <button
         type="button"
         class="close pull-rigth"
@@ -283,21 +281,40 @@
     </div>
    <form class="rounded mb-0 m-4 p-4 needs-validation novalidate">
   
-  
     <label for="basic-url" class="form-label"><b>¿Trabajo sanitizado?</b></label>
-    <div class="form-check">
+   <!--check-->
+   <div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+    <label class="form-check-label" for="flexRadioDefault1">
+      Si
+
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+    <label class="form-check-label" for="flexRadioDefault2">
+      No
+    </label>
+  </div>
+<!---->
+
+
+    <!-- <div class="form-check">
         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
         <label class="form-check-label" for="flexRadioDefault1">
           No
         </label>
       </div>
+
       <div class="form-check">
         <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" checked>
         <label class="form-check-label" for="flexRadioDefault2">
           Si
         </label>
-      </div>
+      </div> -->
+      
   <hr>
+  <label for="basic-url" class="form-label"><b>Estatus:</b></label>
   <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="servicio" id="first-select">
     <option selected>Seleccione....</option>
     <option for value="Falta de refacción(Trabajo Temporal)">Falta de refacción(Trabajo Temporal)</option>

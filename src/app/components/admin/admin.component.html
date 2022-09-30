@@ -7,108 +7,208 @@
   <title>Document</title>
 </head>
 <body>
-  <app-navbar></app-navbar>
+
+<!--navegacion -->
+<!--nav-->
+<nav class=" navbar nav1" style="z-index: 5;" >
+  
+  <a class="navbar-brand" href="#" ><img src="assets/img/logo_bioflex-01.png" style="height: 40px;" alt=""></a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="assets/img/logo_bioflex-01.png"  style="height: 40px;"alt=""></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    
+    <hr class="hr1">
+    <div class="offcanvas-body" >
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+       <!--1-->
+       <div class="nav nav-tabs" id="nav-tab" role="tablist">
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            
+            <button class="accordion-button collapsed fas fa-plus" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              Opciones
+            </button>
+          </h2>
+          <hr>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+            
+            <li class=" active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" style="margin-left: 0.5cm;"
+            type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-border-all"></i> Filtro de solicitudes</li>
+      
+            
+            <li class="" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" style="margin-left: 0.5cm;"
+            type="button" role="tab" aria-controls="nav-contact" aria-selected="false"  ><i class="fas fa-map-marked-alt"></i> Agregar Area</li>
+      
+      
+            <li class="" id="nav-machine-tab" data-bs-toggle="tab" data-bs-target="#nav-machine" style="margin-left: 0.5cm;"
+            type="button" role="tab" aria-controls="nav-machine" aria-selected="false"><i class="fas fa-cog"></i> Agregar Maquina</li>
+      
+            <li class="" id="nav-dispositivo-tab" data-bs-toggle="tab" data-bs-target="#nav-dispositivo" style="margin-left: 0.5cm;"
+            type="button" role="tab" aria-controls="nav-dispositivo" aria-selected="false"><i class="fas fa-microchip"></i> Agregar Dispositivo</li>
+
+            <li class="" id="nav-mecanico-tab" data-bs-toggle="tab" data-bs-target="#nav-mecanico" style="margin-left: 0.5cm;"
+            type="button" role="tab" aria-controls="nav-mecanico" aria-selected="false"><i class="fas fa-user-plus"></i> Agregar mecanico</li>
+
+          </div>
+        </div>
+
+        
+      </div>
+  
+       <!--1-->
+       
+       
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer" href="#" ><img src="assets/img/logout.png"  style=" height: 25px;">Volver al inicio</a>
+        </li>
+      </ul>
+   </div>
+    </div>
+</nav>
 <br><br><br>
+
+<!--navegacion -->
+
+
+
 <div>
   <nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-
-      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-      type="button" role="tab" aria-controls="nav-home" aria-selected="true">Filtro de solicitudes</button>
-
-      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-      type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Agregar Mecanico</button>
-
-      <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
-      type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Agregar Area</button>
-
-
-      <button class="nav-link" id="nav-machine-tab" data-bs-toggle="tab" data-bs-target="#nav-machine"
-      type="button" role="tab" aria-controls="nav-machine" aria-selected="false">Agregar Maquina</button>
-    </div>
+    
   </nav>
-  <div class="tab-content" id="nav-tabContent">
+   <div class="tab-content" id="nav-tabContent">
 <!-- Apartado del filtro de solicitudes -->
+<!--nav-->
+
+
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <h6>Solicitudes</h6>
-
-
-      <table class="table caption-top">
-        <caption>Lista de Solicitudes</caption>
-        <thead>
-          <tr>
-            <th scope="col">#Solicitud</th>
-            <th scope="col">Solicitante</th>
-            <th scope="col">Fecha Solicitud</th>
-            <th scope="col">Hora Solicitud</th>
-            <th scope="col">Área</th>
-            <th scope="col">Máquina</th>
-            <th scope="col">Dispositivo</th>
-            <th scope="col">Problema</th>
-            <th scope="col">Nomina Inicial</th>
-            <th scope="col">Mecánico</th>
-            <th scope="col">Inicio</th>
-            <th scope="col">Hora Inicio</th>
-            <th scope="col">Diagnóstico</th>
-            <th scope="col">Falla</th>
-            <th scope="col">Género Paro</th>
-            <th scope="col">Paro Correctivo</th>
-            <th scope="col">Paro Operativo</th>
-            <th scope="col">Paro Refacción</th>
-            <th scope="col">Tiempo Total</th>
-            <th scope="col">Grasa</th>
-            <th scope="col">Material Usado</th>
-            <th scope="col">Cierre</th>
-            <th scope="col">Hora Cierre</th>
-            <th scope="col">Sanitizado</th>
-            <th scope="col">Estatus</th>
-            <th scope="col">Firmado</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <tr *ngFor="let item of datatable">
-            <th scope="row">{{item.idSolicitud}}</th>
-            <th scope="row">{{item.nombreSolicitante}}</th>
-            <th scope="row">{{item.fechaSolicitud}}</th>
-            <th scope="row">{{item.horaSolicitud}}</th>
-            <th scope="row">{{item.area}}</th>
-            <th scope="row">{{item.maquina}}</th>
-            <th scope="row">{{item.dispositivo}}</th>
-            <th scope="row">{{item.descripcionProblema}}</th>
-            <th scope="row">{{item.nomina}}</th>
-            <th scope="row">{{item.nombre}}</th>
-            <th scope="row">{{item.fechaInicio}}</th>
-            <th scope="row">{{item.horaInicio}}</th>
-            <th scope="row">{{item.diagnostico}}</th>
-            <th scope="row">{{item.tipoFalla}}</th>
-            <th scope="row">{{item.generoParo}}</th>
-            <th scope="row">{{item.paroCorrectivo}}</th>
-            <th scope="row">{{item.paroOperativo}}</th>
-            <th scope="row">{{item.paroRefaccion}}</th>
-            <th scope="row">{{item.tiempoTotal}}</th>
-            <th scope="row">{{item.grasaUtilizada}}</th>
-            <th scope="row">{{item.refaMateHerra}}</th>
-            <th scope="row">{{item.fechaFinal}}</th>
-            <th scope="row">{{item.horaSolicitud}}</th>
-            <th scope="row">{{item.trabajoSanitizado}}</th>
-            <th scope="row">{{item.estatusActividad}}</th>
-            <th scope="row">{{item.firmaSolicitante}}</th>
-
-          </tr>
-
-        </tbody>
-      </table>
-
-
-
-
-
+      
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <div class="input-group mb-3"><form  role="search">
+              <input class="form-control me-2 mb-3" type="search" placeholder="Buscar..." name="search2" [(ngModel)]="searchText">
+            </form> </div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Fitrar por fechas
+          </a>
+          <ul class="dropdown-menu">
+              <li> <a class="dropdown-item">Al día:<input type="date"></a></li>
+              <li> <a class="dropdown-item">Hasta:<input type="date"></a></li>
+          </ul>
+        </li>
+        <div class="input-group mb-3" >
+          <form class="d-flex" ngNativeValidate (ngSubmit)="saveSomeThing()">
+              <button class="btn btn-outline-secondary me-2 mb-3" type="submit" id="button-addon2"><i class="fas fa-download"></i></button>
+          <input type="text" class="form-control  mb-3"  id="txtNamed" name="txtNamed" type="text" placeholder="Nombre del excel"  required>
+      </form>
+      </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+      <div class="table-responsive tab-pane fade show active">
+        <h6>Solicitudes</h6>
+         <table  class="table table-condensed table-bordered table-hover table caption-top" id="season-tble" align="center" border="1" style="width:auto; height:20px;" >
+             <caption>Lista de Solicitudes</caption>
+             <thead>
+             <tr align="center" class="active">
+               <th class="id">
+                 <div class="search-name">
+                 <span>ID</span>
+                 
+                 </div>
+                 </th>
+               <th class="cabezaras" >Nombre Solicitante</th>
+               <th class="cabezaras">Fecha Solicitud</th>
+               <th class="cabezaras">Hora Solicitud</th>
+               <th class="cabezaras"><div class="search-name"><span>Área Solicitud</span><select class="btn_filter" style="width:20px;" name="searchTextAS" [(ngModel)]="searchTextAS"><option value="" selected>todo</option><option *ngFor="let item of areas" >{{item.nombre}}</option></select></div></th>
+               <th class="cabezaras"><div class="search-name"><span>Máquina</span><select class="btn_filter" style="width:20px;"  name="searchTextMAQ" [(ngModel)]="searchTextMAQ"><option value="" selected>todo</option><option *ngFor="let item of maqunasAreas" >{{item.nombre}}</option></select></div></th>
+               <th class="cabezaras"><div class="search-name"><span>Dispositivos</span><select class="btn_filter" style="width:20px;"  name="searchTextDIS" [(ngModel)]="searchTextDIS"><option value="" selected>todo</option><option *ngFor="let item of datatable" >{{item.dispositivo}}</option></select></div></th>
+               <th class="cabezaras">Problema</th>
+               <th class="cabezaras">Nomina Inicial</th>
+               <th class="cabezaras">Nombre Mecánico</th>
+               <th class="cabezaras">Fecha Inicio</th>
+               <th class="cabezaras">Hora Inicio</th>
+               <th class="cabezaras">Diagnóstico</th>
+               <th class="cabezaras">Falla</th>
+               <th class="cabezaras">¿Género Paro?</th>
+               <th class="cabezaras">tiempo Paro Correctivo</th>
+               <th class="cabezaras">tiempo Paro Operativo</th>
+               <th class="cabezaras">Paro Refacción</th>
+               <th class="cabezaras">Tiempo Total</th>
+               <th class="cabezaras">Grasas</th>
+               <th class="cabezaras">Material Usado</th>
+               <th class="cabezaras">Fecha Cierre</th>
+               <th class="cabezaras">Hora Cierre</th>
+               <th class="cabezaras">¿Trabajó Sanitizado?</th>
+               <th class="cabezaras"><div class="search-name">
+                 <span>Estatus</span>
+                 <select class="btn_filter" style="width:20px;"  name="searchTextStat" [(ngModel)]="searchTextStat">
+                   <option value="" selected>todo</option>
+                   <option >Falta de refacción(Trabajo Temporal)</option>
+                   <option > Recogiendo herramientas y refacciones</option>
+                   <option >Cancelado</option>
+                   <option>Terminado</option>
+                 </select>
+               </div></th>
+               <th class="cabezaras">Firmado</th>
+               <th class="cabezaras">Opciones</th>
+               
+             </tr>
+           </thead>
+           <tbody>
+       
+             <tr  *ngFor="let item of datatable| filter:searchText|filter:searchTextMAQ|filter:searchTextAS|filter:searchTextStat|paginate:{itemsPerPage:5,currentPage: page}" style="width: 100%;" align="center"> 
+                 <th scope="row">{{item.idSolicitud}}</th>
+                 <th scope="row">{{item.nombreSolicitante}}</th>
+                 <th scope="row">{{item.fechaSolicitud}}</th>
+                 <th scope="row">{{item.horaSolicitud}}</th>
+                 <th scope="row">{{item.area}}</th>
+                 <th scope="row">{{item.maquina}}</th>
+                 <th scope="row">{{item.dispositivo}}</th>
+                 <th scope="row">{{item.descripcionProblema}}</th>
+                 <th scope="row">{{item.nomina}}</th>
+                 <th scope="row">{{item.nombre}}</th>
+                 <th scope="row">{{item.fechaInicio}}</th>
+                 <th scope="row">{{item.horaInicio}}</th>
+                 <th scope="row">{{item.diagnostico}}</th>
+                 <th scope="row">{{item.tipoFalla}}</th>
+                 <th scope="row">{{item.generoParo}}</th>
+                 <th scope="row">{{item.paroCorrectivo}}</th>
+                 <th scope="row">{{item.paroOperativo}}</th>
+                 <th scope="row">{{item.paroRefaccion}}</th>
+                 <th scope="row">{{item.tiempoTotal}}</th>
+                 <th scope="row">{{item.grasaUtilizada}}</th>
+                 <th scope="row">{{item.refaMateHerra}}</th>
+                 <th scope="row">{{item.fechaFinal}}</th>
+                 <th scope="row">{{item.horaSolicitud}}</th>
+                 <th scope="row">{{item.trabajoSanitizado}}</th>
+                 <th scope="row">{{item.estatusActividad}}</th>
+                 <th scope="row">{{item.firmaSolicitante}}</th>
+                 
+               </tr>
+            
+           </tbody>
+         </table>
+         <pagination-controls (pageChange)="page=$event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+       </div>
 
     </div>
     <!-- Apartado de agregar y ver mecanico-->
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <div class="tab-pane fade" id="nav-mecanico" role="tabpanel" aria-labelledby="nav-mecanico-tab">
     <h6>Mecánico</h6>
 
     <div class="row g-3">
@@ -191,7 +291,7 @@
         <div class="col-sm-3">
           <input type="text" class="form-control" placeholder="Nombre" aria-label="nombre" [(ngModel)]="serviceModelMaquina.nombre">
         </div>
-        <div class="col-sm"> 
+        <div class="col-sm">
           <!-- <input type="text" class="form-control" placeholder="Área" aria-label="Area">-->
 
           <select class="form-select" id="autoSizingSelect" [(ngModel)]="serviceModelMaquina.area">
@@ -237,6 +337,65 @@
 
 
   </div>
+
+<!-- Apartado para agregar y ver dispositivos-->
+
+<div class="tab-pane fade" id="nav-dispositivo" role="tabpanel" aria-labelledby="nav-dispositivo-tab">
+  <h6>Dispositivo</h6>
+  <div class="row g-3">
+    <div class="col-sm-3">
+      <input type="text" class="form-control" placeholder="Nombre" aria-label="nombre" [(ngModel)]="serviceModelDispositivo.nombre">
+    </div>
+    <div class="col-sm">
+      <!-- <input type="text" class="form-control" placeholder="Área" aria-label="Area">-->
+
+      <select class="form-select" id="autoSizingSelect" [(ngModel)]="serviceModelDispositivo.maquina">
+        <option selected>Seleccione...</option>
+        <option *ngFor="let item of datatable3" value="{{item.nombre}}">{{item.nombre}}</option>
+
+      </select>
+
+    </div>
+    <div class="col-sm">
+      <button class="btn btn-danger" type="button" (click)="onAddSolicitudDispositivo(serviceModelDispositivo)">Agregar</button>
+    </div>
+  </div>
+
+
+    <table class="table caption-top">
+      <caption>Listado de Dispositivo</caption>
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Máquina</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of datatable5">
+
+          <td>{{item.nombre}}</td>
+          <td>{{item.maquina}}</td>
+
+
+        </tr>
+
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
   </div>
 </div>
 </body>

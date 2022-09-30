@@ -11,6 +11,7 @@ import { SesionComponent } from './components/sesion/sesion.component';
 import { RevisionFinComponent } from './components/revision-fin/revision-fin.component';
 import { AdminComponent} from "./components/admin/admin.component";
 import { AdminLogGuard } from './guards/admin-log.guard';
+import { SupervisaAreasComponent } from './components/supervisa-areas/supervisa-areas.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,9 @@ const routes: Routes = [
   },
   {
     path:'supervisor',component:AdminComponent,canActivate:[AdminLogGuard]
+  },
+  {
+    path:'supervisorA',component:SupervisaAreasComponent
   }
 ];
 

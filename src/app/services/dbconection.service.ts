@@ -5,6 +5,7 @@ import { ServiceModelArea } from '../models/serviceModelArea';
 import { Observable } from 'rxjs';
 import { ServiceModelMecanico } from '../models/serviceModelMecanico';
 import { ServiceModelMaquina } from '../models/serviceModelMaquina';
+import { ServiceModelDispositivo } from '../models/serviceModelDispositivo';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,14 @@ import { ServiceModelMaquina } from '../models/serviceModelMaquina';
 export class DBConectionService {
   constructor(private http: HttpClient) {}
 
-  urlServices:string="http://172.16.200.83:8085/api/";
+  urlServices:string="http://172.16.200.105:8085/api/";
   //172.16.200.95:8083
 
   getSolicitud(){
     return this.http.get(this.urlServices+'solicitud');
 
    }
+   
 
    getSolicitudArea(){
     return this.http.get(this.urlServices+'solicitudarea');
@@ -30,6 +32,10 @@ export class DBConectionService {
    }
    getSolicitudMecanico(){
     return this.http.get(this.urlServices+'solicitudmecanicos');
+
+   }
+   getSolicitudDispositivo(){
+    return this.http.get(this.urlServices+'solicituddispositivo');
 
    }
    getSolicitudSM(id_Solicitud: string){
@@ -55,6 +61,9 @@ export class DBConectionService {
   addMaquina(serviceModelMaquina:ServiceModelMaquina): Observable <ServiceModelMaquina> {
     return this.http.post<ServiceModelMaquina>(this.urlServices +'Solicitudmaquina', serviceModelMaquina)
   }
+  addDispositivo(serviceModelDispositivo:ServiceModelDispositivo): Observable <ServiceModelDispositivo> {
+    return this.http.post<ServiceModelDispositivo>(this.urlServices +'Solicituddispositivo', serviceModelDispositivo)
+  }
   /**campos diagnostico etapa 2 */
   addDiagnostico( id_Solicitud: number, serviceModel:ServiceModel): Observable<ServiceModel> {
     return this.http.put<ServiceModel>(this.urlServices +'Solicitud3'+`/${id_Solicitud}`, serviceModel)
@@ -72,5 +81,9 @@ export class DBConectionService {
   updateSolicitud( idSolicitud: number, serviceModel:ServiceModel): Observable<ServiceModel> {
     return this.http.put<ServiceModel>(this.urlServices +'Solicitud'+ `/${idSolicitud}`, serviceModel)
   }
+/**obtener datos por area */
+getByIdSolicitudArea(MaqA: string): Observable<ServiceModel> {
+  return this.http.get<ServiceModel>(this.urlServices +'FiltroMaqAre'+ `/${MaqA}`)
+}
 }
 

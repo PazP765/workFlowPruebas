@@ -7,32 +7,55 @@
   <title>Document</title>
 </head>
 <body>
+<!--nav-->
+  <nav class=" navbar nav1" >
+  
+    <a class="navbar-brand" href="#" ><img src="assets/img/logo_bioflex-01.png" style="height: 40px;" alt=""></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="assets/img/logo_bioflex-01.png"  style="height: 40px;"alt=""></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      
+      <hr class="hr1">
+      <div class="offcanvas-body" >
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" style="cursor: pointer" href="#"><img src="assets/img/home.png"  style="height: 25px;"> Inicio</a><hr>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link"   style="cursor: pointer"><i class="fas fa-clipboard" style="color: rgb(0, 162, 255);"></i> Mostrar por mécanico</a>
+          </li>
+          
 
-<app-navbar></app-navbar>
+
+          <div class="input-group input-group-sm mb-3" >
+            <input  #identificador  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Ingresa tú número de nómina" name="nomina" id="txtNomina">
+            <button class="btn btn-outline-primary" type="submit" id="button-addon2" (click)="getInputValue(identificador.value)"  >Ir <i class="fas fa-chevron-right"></i></button>
+          </div>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link" style="cursor: pointer" href="#" ><img src="assets/img/logout.png"  style=" height: 25px;">Volver al inicio</a>
+          </li>
+        </ul>
+     </div>
+      </div>
+</nav>
+<!--nav-->
 
 <br><br><br>
 <!-- <tr  *ngFor="let item of datatable"> -->
+  <div class="search-name">
+    <select class="form-select"   name="search" [(ngModel)]="searchText">
+      <option value="" selected>Todas las áreas</option>
+      <option *ngFor="let item of maqunasAreas" value="{{item.nombre}}">{{item.nombre}}</option>
+    </select>
+  </div>
 
-<nav>
-<div class="nav nav-tabs" id="nav-tab" role="tablist">
-<ul class="nav nav-tabs" >
-
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Áreas</a>
-    <ul class="dropdown-menu">
-      <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Mostrar todo</a>
-      <a class="nav-link" id="nav-Extruder-tab" data-bs-toggle="tab" data-bs-target="#nav-Extruder" type="button" role="tab" aria-controls="nav-Extruder" aria-selected="false">Extrusión</a>
-<a class="nav-link" id="nav-Print-tab" data-bs-toggle="tab" data-bs-target="#nav-Print" type="button" role="tab" aria-controls="nav-Print" aria-selected="false">Impresión</a>
-<a class="nav-link" id="nav-Lamin-tab" data-bs-toggle="tab" data-bs-target="#nav-Lamin" type="button" role="tab" aria-controls="nav-Lamin" aria-selected="false">Laminado</a>
-<a class="nav-link" id="nav-Pouch-tab" data-bs-toggle="tab" data-bs-target="#nav-Pouch" type="button" role="tab" aria-controls="nav-Pouch" aria-selected="false">Pouch</a>
-<a class="nav-link" id="nav-Bolse-tab" data-bs-toggle="tab" data-bs-target="#nav-Bolse" type="button" role="tab" aria-controls="nav-Bolse" aria-selected="false">Bolseo</a>
-
-    </ul>
-  </li>
-</ul>
-</div>
-
-</nav>
  <br>
 
 <div class="tab-content" id="nav-tabContent">
@@ -40,7 +63,7 @@
 <!--tarjetas-->
 <div class="page-wrapper" >
 <!-- ******Header****** -->
-<section class="cards-section text-center "  *ngFor="let item of datatable">
+<section class="cards-section text-center "  *ngFor="let item of datatable| filter:searchText">
 <div class="container ">
   <div class="card text-center border-dark text-bg-light ">
     <div class="card-header ">

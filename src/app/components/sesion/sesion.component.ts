@@ -102,10 +102,10 @@ onUpdateRevision(serviceModel: ServiceModel): void {
 
     serviceModel.emailSent2='true'
 
-    if ((document.getElementById('flexRadioDefault2') as HTMLInputElement).checked === true) {
+    if ((document.getElementById('flexRadioDefault1') as HTMLInputElement).checked === true) {
       serviceModel.trabajoSanitizado = 'Si' } 
       else{
-        if ((document.getElementById('flexRadioDefault1') as HTMLInputElement).checked === true) {
+        if ((document.getElementById('flexRadioDefault2') as HTMLInputElement).checked === true) {
           serviceModel.trabajoSanitizado = 'No' } 
       }
       serviceModel.estatusActividad = (document.getElementById('first-select') as HTMLInputElement).value
@@ -122,7 +122,16 @@ onUpdateRevision(serviceModel: ServiceModel): void {
 
 }
 
+public getInputValue(inputValue:string){
+    
+  this.router.navigate(['/Sesion_mecanico/'+inputValue])
+  .then(() => {
+    window.location.reload();
+  });
 
+  
+
+}
 
 
   onUpdateSalida(serviceModel: ServiceModel): void {

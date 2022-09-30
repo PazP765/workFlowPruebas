@@ -41,6 +41,16 @@ _CargarScriptsService.carga(['time'])
 
 
   }
+  public getInputValue(inputValue:string){
+    
+    this.router.navigate(['/Sesion_mecanico/'+inputValue])
+    .then(() => {
+      window.location.reload();
+    });
+  
+    
+  
+  }
   onSetData(select: any) {
     this.serviceModel.idSolicitud =select.idSolicitud 
     this.serviceModel.nombreSolicitante =select.nombreSolicitante 

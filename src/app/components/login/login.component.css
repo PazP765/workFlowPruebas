@@ -1,8 +1,9 @@
 .form-container{
-    background: linear-gradient(150deg,#212529 33%,#ff9b49 34%,#ffb01f 66%,#000000 67%);
+    background: linear-gradient(150deg,#000000 33%, rgb(255, 194, 28)34%, rgb(255, 194, 28) 66%,#000000 67%);
     font-family: 'Raleway', sans-serif;
     text-align: center;
     padding: 30px 20px 50px;
+    
   }
   .form-container .title{
     color: #fff;

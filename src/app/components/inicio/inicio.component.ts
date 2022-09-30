@@ -7,7 +7,7 @@ import { CargarScriptsService } from '../../services/cargar-scripts.service';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-
+  datatable: any = []
   constructor(_CargarScriptsService:CargarScriptsService) {
    }
 

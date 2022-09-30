@@ -4,6 +4,7 @@ import { ServiceModel } from 'src/app/models/serviceModel';
 import { ServiceModelArea } from 'src/app/models/serviceModelArea';
 import { ServiceModelMecanico } from 'src/app/models/serviceModelMecanico';
 import { ServiceModelMaquina } from 'src/app/models/serviceModelMaquina';
+import { ServiceModelDispositivo } from 'src/app/models/serviceModelDispositivo';
 import { NgModule } from '@angular/core';
 import { DBConectionService } from 'src/app/services/dbconection.service';
 import { CargarScriptsService } from '../../services/cargar-scripts.service';
@@ -19,31 +20,49 @@ export class FormularioSolicitudComponent implements OnInit {
   serviceModel: ServiceModel = new ServiceModel()
   serviceModelArea: ServiceModelArea = new ServiceModelArea()
   serviceModelMaquina: ServiceModelMaquina = new ServiceModelMaquina()
-
+  serviceModelDispositivo: ServiceModelDispositivo = new ServiceModelDispositivo()
+  searchText:any
+  searchTextDisp:any
   datatable: any = []
-  datatable2: any = []
-  datatable3: any = []
+  maqunasAreas: any = []
+  areas: any = []
+  dispositivos: any=[]
+
   constructor(  public route: ActivatedRoute,private router: Router,private dBConectionService: DBConectionService,_CargarScriptsService:CargarScriptsService) { _CargarScriptsService.carga(['time']), _CargarScriptsService.carga(['NabBarFunctions'])}
 
   ngOnInit(): void {
+    this.serviceModel.maquina = '';
+    this.serviceModel.area = '';
+    
 
     this.onDataTable2();
     this.onDataTable3();
+    this.onDataTable4();
   }
 
-  onDataTable2(){
-    this.dBConectionService.getSolicitudArea().subscribe(res=>{
-  this.datatable2=res;
-
-    });
-  }
+ 
   onDataTable3(){
-    this.dBConectionService.getSolicitudMaquina().subscribe(res=>{
-  this.datatable3=res;
+    this.dBConectionService.getSolicitudArea().subscribe(res=>{
+  this.areas=res;
     });
+  }
+  onDataTable4(){
+    this.dBConectionService.getSolicitudDispositivo().subscribe(res=>{
+  this.dispositivos=res;
+    });
+  }
+  onDataTable2(){
+    this.dBConectionService.getSolicitudMaquina().subscribe(res=>{
+  this.maqunasAreas=res;
+
+    });
+  }
+  hi(){
+    console.log('Hola Mundo')
   }
 
   onAddSolicitud(serviceModel: ServiceModel): void {
+   
       this.dBConectionService.addSolicitud(serviceModel).subscribe((res) => {
         if (res) {
 console.log(res)
@@ -76,8 +95,17 @@ console.log(res)
         }
       })
     }
+GetMaquinaArea(){
+  this.dBConectionService.getSolicitudMaquina().subscribe(res=>{
+    this.maqunasAreas=res;
+    for(let i = 0 ; i < this.maqunasAreas.lenght ; i++){
+     if(this.maqunasAreas.area==='Extrusión'){
 
+     }
+  }
+      });
 
+}
 
 
 
