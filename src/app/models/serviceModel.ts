@@ -1,4 +1,5 @@
 export class ServiceModel {
+
     idSolicitud :number=0
     
     nombreSolicitante :String=''
@@ -30,6 +31,12 @@ export class ServiceModel {
     tipoFalla :String=''
     
     emailSent :String=''
+
+    nomina2:number=0
+    
+    nombre2 :String=''
+
+    asignacion:String=''
     
     generoParo :String=''
     

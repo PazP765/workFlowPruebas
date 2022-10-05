@@ -9,7 +9,7 @@
 <body>
   
 <!--nav-->
-<nav class=" navbar nav1" style="z-index: 1;" >
+<nav class=" navbar nav1" style="z-index: 2;" >
   
   <a class="navbar-brand" href="#" ><img src="assets/img/logo_bioflex-01.png" style="height: 40px;" alt=""></a>
   <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -45,18 +45,18 @@
     </div>
 </nav>
 <!--nav-->
-<br> <br> <br>
+ 
 <!-- <tr  *ngFor="let item of datatable"> -->
 
-  <nav class="nav2" style="--bs-breadcrumb-divider: '>'; " aria-label="breadcrumb">
+  <nav class="nav2" style="--bs-breadcrumb-divider: '>'; " aria-label="breadcrumb" style="z-index:1; margin-top: 1.8cm;">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/Resumen_Solicitudes">Solicitudes</a></li>>
-      <li class="breadcrumb-item active" aria-current="page" *ngFor="let item of datatable"><i class="fas fa-angle-double-left" ></i>Mecanico/{{item.nomina}}<i class="fas fa-angle-double-right"></i></li>
+      <li class="breadcrumb-item active" aria-current="page" ><i class="fas fa-angle-double-left" ></i>Mecanico/{{nominaimp}}<i class="fas fa-angle-double-right"></i></li>
   
     </ol>
    
   </nav>
-  <br> <br> 
+  <br> <br> <br><br>
   <div class="top fexconte  flex-row mb-3 card" style="border: none;" >
     <div  class="titulo p-2"></div>
     
@@ -320,7 +320,7 @@
     <option for value="Falta de refacción(Trabajo Temporal)">Falta de refacción(Trabajo Temporal)</option>
     <option value="Recoger herramientas y refacciones"> Recogiendo herramientas y refacciones</option>
     <option value="Cancelado">Cancelado</option>
-    <option value="Cancelado">Terminado</option>
+    <option value="Terminado">Terminado</option>
   </select>
   <br>
     

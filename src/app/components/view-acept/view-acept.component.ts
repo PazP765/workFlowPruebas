@@ -4,6 +4,7 @@ import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 import { DBConectionService } from 'src/app/services/dbconection.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
 import { ServiceModel } from 'src/app/models/serviceModel';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-view-acept',
   templateUrl: './view-acept.component.html',
@@ -15,11 +16,12 @@ export class ViewAceptComponent implements OnInit {
   serviceModel: ServiceModel = new ServiceModel()
 
 
-  constructor(_CargarScriptsService: CargarScriptsService, public route: ActivatedRoute, private router: Router, private dBConectionService: DBConectionService, private modalService: BsModalService) {
+  constructor(private toastr: ToastrService,_CargarScriptsService: CargarScriptsService, public route: ActivatedRoute, private router: Router, private dBConectionService: DBConectionService, private modalService: BsModalService) {
 _CargarScriptsService.carga(['time'])
   }
 
   ngOnInit(): void {
+this.datatable
     this.route.paramMap.subscribe({
       next: (params) => {
         const id = params.get('id')
@@ -30,7 +32,7 @@ _CargarScriptsService.carga(['time'])
               next: response => {
                 this.datatable = response;
 
-
+                console.log(this.datatable)
               }
             });
         }
@@ -67,7 +69,10 @@ _CargarScriptsService.carga(['time'])
     this.serviceModel.horaInicio =select.horaInicio 
     this.serviceModel.diagnostico=select.diagnostico
     this.serviceModel.tipoFalla=select.tipoFalla
-    this.serviceModel.emailSent ='true' 
+    this.serviceModel.emailSent ='true'
+    this.serviceModel.nombre2=select.nombre2 
+    this.serviceModel.nomina2=select.nomina2
+    this.serviceModel.asignacion=select.asignacion 
     this.serviceModel.generoParo =select.generoParo 
     this.serviceModel.paroCorrectivo=select.paroCorrectivo
     this.serviceModel.paroOperativo =select.paroOperativo 
@@ -85,6 +90,11 @@ _CargarScriptsService.carga(['time'])
   openModal(template: TemplateRef<any>) {
     this.bsModalRef = this.modalService.show(template)
   }
+
+  openModalRea(templateRea: TemplateRef<any>) {
+    this.bsModalRef = this.modalService.show(templateRea)
+  }
+
   saveSomeThing() {
     this.bsModalRef.hide()
   } 
@@ -95,12 +105,14 @@ _CargarScriptsService.carga(['time'])
 
     });
   }
-  onUpdateSalida(serviceModel: ServiceModel): void {
 
+  onUpdateSalida(serviceModel: ServiceModel): void {
+  //  serviceModel.nomina2= parseInt((document.getElementById('txtNomina2') as HTMLInputElement).value)
   this.dBConectionService.addDiagnostico(serviceModel.idSolicitud, serviceModel)
     .subscribe((res) => {
       if (res) {
-        
+        alert('ok'+res+'n2'+res.nomina2+'n1'+res.nomina)
+        console.log(''+serviceModel.nomina2)
       } else {
         alert('Error! :(')
       }
@@ -108,5 +120,7 @@ _CargarScriptsService.carga(['time'])
   
  
 }
-
+onTerm(){
+  this.toastr.error('Esta solicitud ya ha sido cerrada!');
+}
 }

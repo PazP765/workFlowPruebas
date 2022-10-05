@@ -13,7 +13,7 @@ import { ServiceModelDispositivo } from '../models/serviceModelDispositivo';
 export class DBConectionService {
   constructor(private http: HttpClient) {}
 
-  urlServices:string="http://172.16.200.105:8085/api/";
+  urlServices:string="http://172.16.200.81:8085/api/";
   //172.16.200.95:8083
 
   getSolicitud(){
@@ -85,5 +85,11 @@ export class DBConectionService {
 getByIdSolicitudArea(MaqA: string): Observable<ServiceModel> {
   return this.http.get<ServiceModel>(this.urlServices +'FiltroMaqAre'+ `/${MaqA}`)
 }
+/**solicitudes tomadas */
+getSolicitudTomada(){return this.http.get(this.urlServices+'Tomadas');}
+/**solicitudes terminadas */
+getSolicitudTerminada(){return this.http.get(this.urlServices+'Terminadas');}
+/**solicitudes pendientes*/
+getSolicituPendiente(){return this.http.get(this.urlServices+'Pendientes');}
 }
 

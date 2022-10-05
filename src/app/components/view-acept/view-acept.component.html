@@ -47,7 +47,7 @@
 <br><br><br>
 <nav class="nav2" style="--bs-breadcrumb-divider: '>'; " aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/Resumen_Solicitudes">Solicitudes</a></li>>
+    <li class="breadcrumb-item"><a routerLink="/Resumen_Solicitudes">Solicitudes</a></li> >
     <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-angle-double-left"></i>Detalles/aceptar<i class="fas fa-angle-double-right"></i></li>
 
   </ol>
@@ -92,17 +92,50 @@
         Fecha de la solicitud:
         <b>{{ item.fechaSolicitud }}</b>
       </p>
-      <button
-      type="submit"
-      class="btnenvia btn btn-success btn.lg"
-      (click)="onSetData(item); openModal(template);"
-    >
-      <i class="fas fa-paper-plane"></i>
-      Aceptar esta solicitud
-    </button>
+
+      <div *ngIf="item.nombre==='Pendiente por asignar'; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+        <button
+        type="submit"
+        class="btnenvia btn btn-success btn.lg"
+        (click)="onSetData(item); openModal(template);"
+      >
+        <i class="fas fa-paper-plane"></i>
+        Aceptar esta solicitud 
+      </button>
+      </ng-template>
+      <ng-template #elseBlock>
+        <div *ngIf="item.estatusActividad==='Terminado'; then thenBlock1 else elseBlock1"></div>
+      <ng-template #thenBlock1>
+        <button
+        type="submit"
+        class="btnenvia btn btn-danger btn.lg"
+        (click)="onTerm()"
+      >
+        
+        Solicitud terminada
+      </button>
+      </ng-template>
+
+      <ng-template #elseBlock1>
+        <button
+        type="submit"
+        class="btnenvia btn btn-warning btn.lg"
+        (click)="onSetData(datatable); openModalRea(templateRea);"
+      >
+        <i class="fas fa-paper-plane"></i>
+        Reasignar solicitud
+      </button>
+      </ng-template>
+       
+
+      </ng-template>
+
+      
     </div>
       
 <ng-template class="wrapper bg-white" #template>
+  
 <div class="modal-header">
   <div class="h6 text-muted text-center pt-2"  *ngFor="let item of datatable"><i class="fa-solid fa-triangle-exclamation triangle"></i>Tomar la solicitud. <b style="color: red;">{{ item.idSolicitud }}</b></div>
   <button
@@ -127,7 +160,37 @@
   <button class="btn btn-primary"  (click)="onUpdateSalida(serviceModel); saveSomeThing() ">Confirmar</button>
       
 <br>
-</ng-template></div>
+</ng-template>
+
+<ng-template class="wrapper bg-white" #templateRea>
+  
+  <div class="modal-header">
+    <div class="h6 text-muted text-center pt-2"  *ngFor="let item of datatable"><i class="fa-solid fa-triangle-exclamation triangle"></i>Tomar la solicitud. <b style="color: red;">{{ item.idSolicitud }}</b></div>
+    <button
+      type="button"
+      class="close pull-rigth"
+      aria-label="Close"
+      (click)="bsModalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <br>
+  
+  <form class="rounded mb-0 m-4 p-4 needs-validation novalidate" >
+  <h6 ><i class="fas fa-info-circle"></i> Coloca tú número de nómina para reasignar</h6>
+  <div class="input-group input-group-sm mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-clipboard"></i> </span>
+    <input type="number" class="form-control" placeholder="Coloque su nómina" name="Nomina2" id="txtNomina2" [(ngModel)]="serviceModel.nomina2">
+  </div>
+  </form>
+  
+    <button class="btn btn-primary"  (click)="onUpdateSalida(serviceModel); saveSomeThing() ">Confirmar</button>
+        
+  <br>
+  </ng-template>
+
+</div>
 
 
 

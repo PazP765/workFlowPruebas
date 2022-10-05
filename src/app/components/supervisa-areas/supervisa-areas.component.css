@@ -115,17 +115,7 @@ table tr th {
 }
 
  
-th:first-child {
-  position: -webkit-sticky;
-  position: sticky;
-  left: 0;
-  z-index: 2;
-  background: #ccc;
-}
-thead th:first-child,
-tfoot th:first-child {
-  z-index: 5;
-}
+
 
 .reject{
   color: red;
@@ -158,9 +148,44 @@ tfoot th:first-child {
 
 
 
+nav{
+background-color: rgb(255, 194, 28);
+position:fixed; 
+
+width: 100%;
+-webkit-box-shadow: 0 8px 6px -6px black;
+-moz-box-shadow: 0 8px 6px -6px black;
+     box-shadow: 0 8px 6px -6px black;
+
+}
+.hr1 {
+
+background-color:  rgb(255, 194, 28);
+height: 5px;
+border:none;
+
+}
+
+.nav2{
+background-color: white;
+border: none;
+-webkit-box-shadow: 0 8px 6px -6px rgb(255, 255, 255);
+-moz-box-shadow: 0 8px 6px -6px rgb(255, 255, 255);
+     box-shadow: 0 8px 6px -6px rgb(255, 255, 255);
+
+}
 
 
 
-
-
+th:first-child {
+position: -webkit-sticky;
+position: sticky;
+left: 0;
+z-index: 1;
+background: #ccc;
+}
+thead th:first-child,
+tfoot th:first-child {
+z-index: 1;
+}
 

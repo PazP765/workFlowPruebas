@@ -5,9 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-</head>
-<body>
-<!--nav-->
+ </head>
+ <body>
+ <!--nav-->
   <nav class=" navbar nav1" >
   
     <a class="navbar-brand" href="#" ><img src="assets/img/logo_bioflex-01.png" style="height: 40px;" alt=""></a>
@@ -38,62 +38,290 @@
             <button class="btn btn-outline-primary" type="submit" id="button-addon2" (click)="getInputValue(identificador.value)"  >Ir <i class="fas fa-chevron-right"></i></button>
           </div>
           <hr>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+              
+              <button class="accordion-button collapsed fas fa-plus" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                Mostrar por...
+              </button>
+            </h2>
+            
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+              
+              <li class=" active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" style="margin-left: 0.5cm;"
+              type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-border-all"></i>General</li>
+        
+              
+             
+              <li class="" id="nav-pendientes-tab" data-bs-toggle="tab" data-bs-target="#nav-pendientes" style="margin-left: 0.5cm;"
+              type="button" role="tab" aria-controls="nav-dispositivo" aria-selected="false"><i class="fas fa-check"></i>Pendientes</li>
+  
+              <li class="" id="nav-tomadas-tab" data-bs-toggle="tab" data-bs-target="#nav-tomadas" style="margin-left: 0.5cm;"
+              type="button" role="tab" aria-controls="nav-mecanico" aria-selected="false"><i class="fas fa-check-double"></i>Tomadas</li>
+              
+              <li class="" id="nav-terminadas-tab" data-bs-toggle="tab" data-bs-target="#nav-terminadas" style="margin-left: 0.5cm;"
+              type="button" role="tab" aria-controls="nav-mecanico" aria-selected="false"><i class="fas fa-check-double"></i>Terminadas</li>
+  
+            </div>
+          </div>
+          
+        </div>
+        <hr>
           <li class="nav-item">
             <a class="nav-link" style="cursor: pointer" href="#" ><img src="assets/img/logout.png"  style=" height: 25px;">Volver al inicio</a>
           </li>
         </ul>
+      
      </div>
       </div>
-</nav>
-<!--nav-->
-
-<br><br><br>
-<!-- <tr  *ngFor="let item of datatable"> -->
-  <div class="search-name">
-    <select class="form-select"   name="search" [(ngModel)]="searchText">
-      <option value="" selected>Todas las áreas</option>
-      <option *ngFor="let item of maqunasAreas" value="{{item.nombre}}">{{item.nombre}}</option>
-    </select>
-  </div>
+   
+ </nav>
+ <!--nav-->
 
  <br>
 
-<div class="tab-content" id="nav-tabContent">
-<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-<!--tarjetas-->
-<div class="page-wrapper" >
-<!-- ******Header****** -->
-<section class="cards-section text-center "  *ngFor="let item of datatable| filter:searchText">
-<div class="container ">
-  <div class="card text-center border-dark text-bg-light ">
-    <div class="card-header ">
-      {{item.maquina}}/{{item.dispositivo}}
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{item.area}}</h5>
+ <!-- <tr  *ngFor="let item of datatable"> -->
+  
+  <!--1-->
+  <div class="row g-0" style="margin-top: 1.2cm;">
+  <div class="col-md-2">
+    <div class="input-group input-group-sm mb-3">
+    <div class="search-name">
+      <select class="form-select"   name="search" [(ngModel)]="searchText">
+        <option value="" selected>Todas las áreas</option>
+        <option *ngFor="let item of maqunasAreas" value="{{item.nombre}}">{{item.nombre}}</option>
+        
+      </select>
+    </div></div>
+ </div>
+  
+  <div  class="col-md-6">
+    
+  </div></div>
+  <!--1-->
+  
 
-      <p class="card-text">Tomada por: {{item.nombre}}</p>
-      <h6 class="card-title">Solicitado por: {{item.nombreSolicitante}}</h6>
-      <p class="card-text">{{item.descripcionProblema}}</p>
-      <a class="btn btn-warning" routerLink="/view/{{item.idSolicitud}}">Revisar/aceptar</a>
-    </div>
-    <div class="card-footer text-muted">
-      No: {{item.idSolicitud}} - {{item.fechaSolicitud}}
-    </div>
+ <br>
+
+
+ 
+ 
+   <div class="tab-content" id="nav-tabContent">
+     <!--solicitudes general -->
+  
+
+     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+   
+       
+
+      <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+     <!--tarjetas-->
+      <div class="page-wrapper" >
+      <!-- ******Header****** -->
+      
+      <ol class="breadcrumb col-md-6" >
+        <li class="breadcrumb-item active" aria-current="page" ><i class="fas fa-angle-double-left" ></i>Lista general<i class="fas fa-angle-double-right"></i></li>
+      </ol>
+     <section class="cards-section text-center "  *ngFor="let item of datatable|filter:searchText">
+      
+      <div class="container ">
+       <div class="card text-center border-dark text-bg-light ">
+      <div class="card-header ">
+        {{item.maquina}}/{{item.dispositivo}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{item.area}}</h5>
+  
+        <p class="card-text">Tomada por: {{item.nombre}}</p>
+        <h6 class="card-title">Solicitado por: {{item.nombreSolicitante}}</h6>
+        <p class="card-text">{{item.descripcionProblema}}</p>
+        
+        <div *ngIf="item.nombre!=='Pendiente por asignar'; then thenBlock else elseBlock"></div>
+     <ng-template #thenBlock>
+     <button class="btn btn-secondary"  style="color: rgb(170, 168, 168);" (click)="onclickTomadas()">Revisar/aceptar</button>
+
+      </ng-template>
+     <ng-template #elseBlock>
+      <a class="btn btn-warning" routerLink="/view/{{item.idSolicitud}}">Revisar/aceptar</a></ng-template>
+
+        
+        
+      </div>
+      <div class="card-footer text-muted">
+        No: {{item.idSolicitud}} - {{item.fechaSolicitud}}
+      </div>
+       </div>
+      <br>
+      </div><!--//container-->
+      </section><!--//cards-section-->
+      </div></div></div>
+ 
+      </div>
+
+
+
+    <!-- Apartado de agregar y ver mecanico-->
+    <div class="tab-pane fade" id="nav-pendientes" role="tabpanel" aria-labelledby="nav-pendientes-tab">
+  
+
+      <div class="tab-pane fade show active" id="nav-pendientes" role="tabpanel" aria-labelledby="nav-pendientes-tab">
+   
+       
+
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-pendientes" role="tabpanel" aria-labelledby="nav-pendientes-tab" tabindex="0">
+          <!--tarjetas-->
+          <div class="page-wrapper">
+          <!-- ******Header****** -->
+          <ol class="breadcrumb col-md-6" >
+            <li class="breadcrumb-item active" aria-current="page" ><i class="fas fa-angle-double-left" ></i>Lista Pendientes<i class="fas fa-angle-double-right"></i></li>
+          </ol>
+          <section class="cards-section text-center "  *ngFor="let item of datatablePendientes| filter:searchText">
+          <div class="container ">
+            <div class="card text-center border-dark text-bg-light ">
+              <div class="card-header ">
+                {{item.maquina}}/{{item.dispositivo}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{item.area}}</h5>
+          
+                <p class="card-text">Tomada por: {{item.nombre}}</p>
+                <h6 class="card-title">Solicitado por: {{item.nombreSolicitante}}</h6>
+                <p class="card-text">{{item.descripcionProblema}}</p>
+                <a class="btn btn-primary m-2" routerLink="/view/{{item.idSolicitud}}">Revisar/aceptar</a>
+              </div>
+              <div class="card-footer text-muted">
+                No: {{item.idSolicitud}} - {{item.fechaSolicitud}}
+              </div>
+            </div>
+            <br>
+          </div><!--//container-->
+          </section><!--//cards-section-->
+          </div></div></div>
+      </div>
+   </div>
+   <!-- Apartado de agregar y ver area-->
+   <!--pendientes-->
+
+<div class="tab-pane fade" id="nav-tomadas" role="tabpanel" aria-labelledby="nav-tomadas-tab">
+  
+
+  <div class="tab-pane fade show active" id="nav-tomadas" role="tabpanel" aria-labelledby="nav-tomadas-tab">
+
+   
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-tomadas" role="tabpanel" aria-labelledby="nav-tomadas-tab" tabindex="0">
+      <!--tarjetas-->
+      <div class="page-wrapper">
+      <!-- ******Header****** -->
+      <ol class="breadcrumb col-md-6" >
+        <li class="breadcrumb-item active" aria-current="page" ><i class="fas fa-angle-double-left" ></i>Lista Tomadas<i class="fas fa-angle-double-right"></i></li>
+      </ol>
+      <section class="cards-section text-center "  *ngFor="let item of datatableTomadas|filter:searchText">
+      <div class="container ">
+        <div class="card text-center border-dark text-bg-light ">
+          <div class="card-header ">
+            {{item.maquina}}/{{item.dispositivo}}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{item.area}}</h5>
+      
+            <p class="card-text">Tomada por: {{item.nombre}}</p>
+            <h6 class="card-title">Solicitado por: {{item.nombreSolicitante}}</h6>
+            <p class="card-text">{{item.descripcionProblema}}</p>
+            <a class="btn btn-warning m-2" routerLink="/view/{{item.idSolicitud}}">Ver/reasignar</a>
+          </div>
+          <div class="card-footer text-muted">
+            No: {{item.idSolicitud}} - {{item.fechaSolicitud}}
+          </div>
+        </div>
+        <br>
+      </div><!--//container-->
+      </section><!--//cards-section-->
+      </div></div></div>
   </div>
-<br>
-</div><!--//container-->
-</section><!--//cards-section-->
-</div>
-</div>
-<div class="tab-pane fade" id="nav-Extruder" role="tabpanel" aria-labelledby="nav-Extruder-tab" tabindex="0">2</div>
-<div class="tab-pane fade" id="nav-Print" role="tabpanel" aria-labelledby="nav-Print-tab" tabindex="0">3</div>
-<div class="tab-pane fade" id="nav-Lamin" role="tabpanel" aria-labelledby="nav-Lamin-tab" tabindex="0">4</div>
-<div class="tab-pane fade" id="nav-Pouch" role="tabpanel" aria-labelledby="nav-Pouch-tab" tabindex="0">5</div>
-<div class="tab-pane fade" id="nav-Bolse" role="tabpanel" aria-labelledby="nav-Bolse-tab" tabindex="0">5</div>
 </div>
 
 
+<!--pendientes-->
+    <div class="tab-pane fade" id="nav-terminadas" role="tabpanel" aria-labelledby="nav-terminadas-tab">
+   
+       
 
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-terminadas" role="tabpanel" aria-labelledby="nav-terminadas-tab" tabindex="0">
+        <!--tarjetas-->
+        <div class="page-wrapper" >
+        <!-- ******Header****** -->
+        <ol class="breadcrumb col-md-6" >
+          <li class="breadcrumb-item active" aria-current="page" ><i class="fas fa-angle-double-left" ></i>Lista Terminadas<i class="fas fa-angle-double-right"></i></li>
+        </ol>
+        <section class="cards-section text-center "  *ngFor="let item of datatableTerminadas| filter:searchText |filter:searchTextPend">
+        <div class="container ">
+          <div class="card text-center border-dark text-bg-light ">
+            <div class="card-header ">
+              {{item.maquina}}/{{item.dispositivo}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{item.area}}</h5>
+        
+              <p class="card-text">Tomada por: {{item.nombre}}</p>
+              <h6 class="card-title">Solicitado por: {{item.nombreSolicitante}}</h6>
+              <p class="card-text">{{item.descripcionProblema}}</p>
+              <a class="btn btn-warning" routerLink="/view/{{item.idSolicitud}}">info</a>
+            </div>
+            <div class="card-footer text-muted">
+              No: {{item.idSolicitud}} - {{item.fechaSolicitud}}
+            </div>
+          </div>
+          <br>
+        </div><!--//container-->
+        </section><!--//cards-section-->
+        </div></div>
+     </div>
+    </div>
+    
+
+    <div class="tab-pane fade" id="nav-terminadas" role="tabpanel" aria-labelledby="nav-terminadas-tab">
+   
+       
+
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-terminadas" role="tabpanel" aria-labelledby="nav-terminadas-tab" tabindex="0">
+        <!--tarjetas-->
+        <div class="page-wrapper" >
+        <!-- ******Header****** -->
+        <section class="cards-section text-center "  *ngFor="let item of datatableTerminadas| filter:searchText ">
+        <div class="container ">
+          <div class="card text-center border-dark text-bg-light ">
+            <div class="card-header ">
+              {{item.maquina}}/{{item.dispositivo}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{item.area}}</h5>
+        
+              <p class="card-text">Tomada por: {{item.nombre}}</p>
+              <h6 class="card-title">Solicitado por: {{item.nombreSolicitante}}</h6>
+              <p class="card-text">{{item.descripcionProblema}}</p>
+              <a class="btn btn-primary" routerLink="/view/{{item.idSolicitud}}">info</a>
+            </div>
+            <div class="card-footer text-muted">
+              No: {{item.idSolicitud}} - {{item.fechaSolicitud}}
+            </div>
+          </div>
+          <br>
+        </div><!--//container-->
+        </section><!--//cards-section-->
+        </div></div>
+     </div>
+    </div>
+
+
+
+
+  </div>
 </body>
 </html>

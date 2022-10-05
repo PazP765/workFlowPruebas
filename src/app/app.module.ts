@@ -22,6 +22,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FilterRangePipe } from './pipes/filter-range.pipe';
 import { AscDescPipe } from './pipes/asc-desc.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     ModalModule.forRoot(),
+    ToastrModule.forRoot(),
     
     
   ],

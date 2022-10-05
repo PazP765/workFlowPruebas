@@ -47,7 +47,7 @@ const routes: Routes = [
     path:'supervisor',component:AdminComponent,canActivate:[AdminLogGuard]
   },
   {
-    path:'supervisorA',component:SupervisaAreasComponent
+    path:'supervisorA',component:SupervisaAreasComponent,canActivate:[AdminLogGuard]
   }
 ];
 

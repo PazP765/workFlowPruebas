@@ -5,7 +5,7 @@ import { CargarScriptsService } from '../../services/cargar-scripts.service';
 import { ServiceModel } from 'src/app/models/serviceModel';
 import { ServiceModelArea } from 'src/app/models/serviceModelArea';
 import { ServiceModelMaquina } from 'src/app/models/serviceModelMaquina';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-tomes-component',
   templateUrl: './tomes-component.component.html',
@@ -13,45 +13,66 @@ import { ServiceModelMaquina } from 'src/app/models/serviceModelMaquina';
 })
 export class TomesComponentComponent implements OnInit {
   searchText: any;
+  searchTextPend:any;
   serviceModel: ServiceModel = new ServiceModel()
   serviceModelArea: ServiceModelArea = new ServiceModelArea()
   serviceModelMaquina: ServiceModelMaquina = new ServiceModelMaquina()
   datatable: any = []
+  datatableTomadas: any = []
+  datatableTerminadas: any = []
+  datatablePendientes: any = []
   maqunasAreas: any = []
   areas: any = []
   public area1:string=''
   public txtID:string=''
 
-  constructor(_CargarScriptsService:CargarScriptsService, public route: ActivatedRoute, private router: Router,private dBConectionService: DBConectionService) { 
+  constructor(private toastr: ToastrService,_CargarScriptsService:CargarScriptsService, public route: ActivatedRoute, private router: Router,private dBConectionService: DBConectionService) { 
    
   }
 
   ngOnInit(): void {
     this.searchText=''
     this.onDataTable();
-    this.onDataTable2();
-    this.onDataTable3();
+    this.onDataTablePendientes();
+    this.onDataTableTomadas();
+    this.onDataTableTerminadas();
+    this.onDatatableAreas();
   }
 
-  onDataTable3(){
-    
-    this.dBConectionService.getSolicitudArea().subscribe(res=>{
-  this.maqunasAreas=res;
-  console.log(this.maqunasAreas)
-    });
+ 
+  onclickTomadas(){
+    this.toastr.warning('Esta solicitud ya ha sido tomada!');
   }
-  onDataTable2(){
-    this.dBConectionService.getSolicitudArea().subscribe(res=>{
-  this.maqunasAreas=res;
-  console.log(this.maqunasAreas)
-
-    });
-  }
+  
   onDataTable(){
   this.dBConectionService.getSolicitud().subscribe(res=>{
 this.datatable=res;
 
   });
+}
+onDataTableTomadas(){
+  this.dBConectionService.getSolicitudTomada().subscribe(res=>{
+this.datatableTomadas=res;
+
+  });
+}
+onDataTableTerminadas(){
+  this.dBConectionService.getSolicitudTerminada().subscribe(res=>{
+this.datatableTerminadas=res;
+
+  });
+}
+onDataTablePendientes(){/**pendientes por asignar (no han sido tomadas) */
+  this.dBConectionService.getSolicituPendiente().subscribe(res=>{
+this.datatablePendientes=res;
+
+  });
+}
+onDatatableAreas(){
+  this.dBConectionService.getSolicitudArea().subscribe(res=>{
+    this.maqunasAreas=res;
+    
+      });
 }
 
 

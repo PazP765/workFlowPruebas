@@ -14,7 +14,9 @@ html {
    box-shadow:         inset 0 0 10px #000000;
  }
 
-
+ .custom-tooltip {
+   --bs-tooltip-bg: var(--bs-primary);
+ }
  
 .nav1{
    background-color: rgb(255, 194, 28);

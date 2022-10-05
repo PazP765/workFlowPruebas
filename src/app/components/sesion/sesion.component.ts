@@ -14,7 +14,7 @@ export class SesionComponent implements OnInit {
   datatable: any = []
   serviceModel: ServiceModel = new ServiceModel()
 totalparo:number=0;
-
+nominaimp:string=''
   constructor(_CargarScriptsService: CargarScriptsService, public route: ActivatedRoute, private router: Router, private dBConectionService: DBConectionService, private modalService: BsModalService) {
 
   }
@@ -30,7 +30,7 @@ totalparo:number=0;
             .subscribe({
               next: response => {
                 this.datatable = response;
-
+this.nominaimp=id
 
               }
             });
