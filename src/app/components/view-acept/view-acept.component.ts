@@ -5,6 +5,7 @@ import { DBConectionService } from 'src/app/services/dbconection.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
 import { ServiceModel } from 'src/app/models/serviceModel';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-view-acept',
   templateUrl: './view-acept.component.html',
@@ -21,7 +22,6 @@ _CargarScriptsService.carga(['time'])
   }
 
   ngOnInit(): void {
-this.datatable
     this.route.paramMap.subscribe({
       next: (params) => {
         const id = params.get('id')
@@ -91,9 +91,7 @@ this.datatable
     this.bsModalRef = this.modalService.show(template)
   }
 
-  openModalRea(templateRea: TemplateRef<any>) {
-    this.bsModalRef = this.modalService.show(templateRea)
-  }
+  
 
   saveSomeThing() {
     this.bsModalRef.hide()
@@ -111,8 +109,26 @@ this.datatable
   this.dBConectionService.addDiagnostico(serviceModel.idSolicitud, serviceModel)
     .subscribe((res) => {
       if (res) {
-        alert('ok'+res+'n2'+res.nomina2+'n1'+res.nomina)
-        console.log(''+serviceModel.nomina2)
+        Swal.fire({
+          title: 'Operación realizada con éxito',
+          text: "¡¡Presione el botón para confirmar!!",
+          icon: 'info',
+          showCancelButton: false,
+          confirmButtonColor: 'rgb(255, 194, 28)',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok,volver'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Operación realizada.!',
+              'Notificación enviada.',
+              'success',
+
+            ),
+            window.location.reload()
+
+          }
+        })
       } else {
         alert('Error! :(')
       }

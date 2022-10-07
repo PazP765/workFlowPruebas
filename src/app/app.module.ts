@@ -23,7 +23,7 @@ import { FilterRangePipe } from './pipes/filter-range.pipe';
 import { AscDescPipe } from './pipes/asc-desc.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,8 +51,10 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
+    
     
     
   ],
