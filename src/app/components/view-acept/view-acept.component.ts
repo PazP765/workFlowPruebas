@@ -86,6 +86,7 @@ _CargarScriptsService.carga(['time'])
     this.serviceModel.estatusActividad =select.estatusActividad 
     this.serviceModel.firmaSolicitante =select.firmaSolicitante 
     this.serviceModel.emailSent2=select.emailSent2
+    this.serviceModel.nombre3=select.nombre3
     }
   openModal(template: TemplateRef<any>) {
     this.bsModalRef = this.modalService.show(template)

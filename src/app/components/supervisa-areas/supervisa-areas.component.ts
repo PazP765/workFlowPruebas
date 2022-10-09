@@ -173,7 +173,7 @@ onSetData(select: any) {
   
   onUpdateSalida(serviceModel: ServiceModel): void {
     //  serviceModel.nomina2= parseInt((document.getElementById('txtNomina2') as HTMLInputElement).value)
-    this.dBConectionService.addDiagnostico(serviceModel.idSolicitud, serviceModel)
+    this.dBConectionService.addRevision(serviceModel.idSolicitud, serviceModel)
       .subscribe((res) => {
         if (res) {
           Swal.fire({

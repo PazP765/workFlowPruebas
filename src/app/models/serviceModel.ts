@@ -60,6 +60,8 @@ export class ServiceModel {
     
     estatusActividad :String=''
     
-    firmaSolicitante :String=''
+    firmaSolicitante :number=0
+
+    nombre3:string=''
     
     emailSent2 :String=''}

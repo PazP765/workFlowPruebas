@@ -198,11 +198,23 @@
                  <th scope="row">{{item.trabajoSanitizado}}</th>
                  <th scope="row">{{item.estatusActividad}}</th>
                  <th scope="row">{{item.firmaSolicitante}}</th>
-                 <div *ngIf="item.estatusActividad==='Terminado'; then thenBlock else elseBlock"></div>
+                 <div *ngIf="item.estatusActividad ==='Terminado'; then thenBlock else elseBlock"></div>
                  <ng-template #thenBlock> 
-                  <th><button type="button" class="btn btn-primary" (click)="onSetData(item); openModal(template);"
-                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Firmar</button></th>
-                 </ng-template>
+
+                  <div *ngIf="item.firmaSolicitante!==0; then thenBlock1 else elseBlock1"></div>
+                  <ng-template #thenBlock1> 
+                    <th><button type="button" class="btn btn-danger" (click)="onSetData(item); openModal(template);"
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" disabled>firmada</button></th>
+                   
+                  </ng-template>
+                  <ng-template #elseBlock1>
+                    <th><button type="button" class="btn btn-primary" (click)="onSetData(item); openModal(template);"
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >firmar</button></th>
+                     
+                  </ng-template>
+
+                  
+                  </ng-template>
 
                  <ng-template #elseBlock> 
                   <th><button type="button" class="btn btn-primary" (click)="onSetData(item); openModal(template);"
@@ -295,7 +307,7 @@
   <br>
   <form class="rounded mb-0 m-4 p-4 needs-validation novalidate" >
     
-      <h6 ><i class="fas fa-info-circle"></i> Coloca tú número de firma para continuar</h6>
+      <h6 ><i class="fas fa-info-circle"></i> Coloca tú número de nomina para continuar</h6>
       <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-clipboard"></i> </span>
         <input type="text" class="form-control" placeholder="Coloque su firma" name="firma" id="txtfirma" [(ngModel)]="serviceModel.firmaSolicitante">

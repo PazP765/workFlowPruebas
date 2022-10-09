@@ -13,7 +13,7 @@ import { ServiceModelDispositivo } from '../models/serviceModelDispositivo';
 export class DBConectionService {
   constructor(private http: HttpClient) {}
 
-  urlServices:string="http://172.16.200.82:8085/api/";
+  urlServices:string="http://192.168.0.102:8085/api/";
   //172.16.200.95:8083
 
   getSolicitud(){
@@ -38,8 +38,14 @@ export class DBConectionService {
     return this.http.get(this.urlServices+'solicituddispositivo');
 
    }
+   /**filtrar nomina 1 */
    getSolicitudSM(id_Solicitud: string){
     return this.http.get(this.urlServices+'solicitud6'+ `/${id_Solicitud}`);
+
+   }
+   /**filtrar nomina 2 */
+   getSolicitudSM2(id_Solicitud: string){
+    return this.http.get(this.urlServices+'solicitud7'+ `/${id_Solicitud}`);
 
    }
    /**obtener datos por id */

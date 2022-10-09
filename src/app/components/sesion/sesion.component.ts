@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DBConectionService } from 'src/app/services/dbconection.service';
 import { ServiceModel } from 'src/app/models/serviceModel';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-sesion',
   templateUrl: './sesion.component.html',
@@ -12,11 +13,22 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
 export class SesionComponent implements OnInit {
   bsModalRef: BsModalRef = new BsModalRef()
   datatable: any = []
+  form: FormGroup;
   serviceModel: ServiceModel = new ServiceModel()
 totalparo:number=0;
 nominaimp:string=''
-  constructor(_CargarScriptsService: CargarScriptsService, public route: ActivatedRoute, private router: Router, private dBConectionService: DBConectionService, private modalService: BsModalService) {
+Data: Array<any> = [
+  { name: 'Falla eléctrica', value: 'Falla eléctrica' },
+  { name: 'Falla mecánica', value: 'Falla mecánica' },
+  { name: 'Falla neumática', value: 'Falla neumática' },
+  { name: 'Falla hidráulica', value: 'Falla hidráulica' },
+  { name: 'Falla de energía eléctrica CFE', value: 'Falla de energía eléctrica CFE' }
+];
 
+  constructor(private fb: FormBuilder,_CargarScriptsService: CargarScriptsService, public route: ActivatedRoute, private router: Router, private dBConectionService: DBConectionService, private modalService: BsModalService) {
+    this.form = this.fb.group({
+      checkArray: this.fb.array([])
+    })
   }
 
   ngOnInit(): void {
@@ -42,6 +54,7 @@ this.nominaimp=id
 
 
   }
+ 
   onSetData(select: any) {
 
     this.serviceModel.idSolicitud =select.idSolicitud
@@ -97,7 +110,6 @@ this.nominaimp=id
  
 
 
-
 onUpdateRevision(serviceModel: ServiceModel): void {
 
     serviceModel.emailSent2='true'
@@ -136,24 +148,24 @@ public getInputValue(inputValue:string){
 
   onUpdateSalida(serviceModel: ServiceModel): void {
 
-    if ((document.getElementById('FE') as HTMLInputElement).checked === true) {
-      serviceModel.tipoFalla = 'Falla eléctrica' }
-      else{
-        if ((document.getElementById('FM') as HTMLInputElement).checked === true) {
-          serviceModel.tipoFalla = 'Falla mecánica' }
-          else{
-            if ((document.getElementById('FN') as HTMLInputElement).checked === true) {
-              serviceModel.tipoFalla = 'Falla Neumática' }
-              else{
-                if ((document.getElementById('FH') as HTMLInputElement).checked === true) {
-                  serviceModel.tipoFalla = 'Falla Hidráulica' }
-                  else{
-                    if ((document.getElementById('CFE') as HTMLInputElement).checked === true) {
-                      serviceModel.tipoFalla = ' Falla de energía eléctrica CFE' }
-                  }
-              }
-          }
-      }
+    // if ((document.getElementById('FE') as HTMLInputElement).checked === true) {
+    //   serviceModel.tipoFalla = 'Falla eléctrica' }
+    //   else{
+    //     if ((document.getElementById('FM') as HTMLInputElement).checked === true) {
+    //       serviceModel.tipoFalla = 'Falla mecánica' }
+    //       else{
+    //         if ((document.getElementById('FN') as HTMLInputElement).checked === true) {
+    //           serviceModel.tipoFalla = 'Falla Neumática' }
+    //           else{
+    //             if ((document.getElementById('FH') as HTMLInputElement).checked === true) {
+    //               serviceModel.tipoFalla = 'Falla Hidráulica' }
+    //               else{
+    //                 if ((document.getElementById('CFE') as HTMLInputElement).checked === true) {
+    //                   serviceModel.tipoFalla = ' Falla de energía eléctrica CFE' }
+    //               }
+    //           }
+    //       }
+    //   }
   this.dBConectionService.addDiagnostico(serviceModel.idSolicitud, serviceModel)
     .subscribe((res) => {
       if (res) {

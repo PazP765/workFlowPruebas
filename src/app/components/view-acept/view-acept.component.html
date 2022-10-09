@@ -147,11 +147,13 @@
 </div>
 <br>
 <form class="rounded mb-0 m-4 p-4 needs-validation novalidate" >
-  <div *ngIf="serviceModel.nomina===0; then thenBlock3 else elseBlock3"></div>
+  <div *ngIf="serviceModel.nomina === 0; then thenBlock3 else elseBlock3"></div>
   <ng-template #thenBlock3>
     <h6 ><i class="fas fa-info-circle"></i> Coloca tú número de nómina para continuar</h6>
     <div class="input-group input-group-sm mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-clipboard"></i> </span>
+      <span class="input-group-text" id="inputGroup-sizing-sm"><i class
+        
+        ="fas fa-clipboard"></i> </span>
       <input type="number" class="form-control" placeholder="Coloque su nómina" name="Nomina" id="txtNomina" [(ngModel)]="serviceModel.nomina">
     </div>
   </ng-template>

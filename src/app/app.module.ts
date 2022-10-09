@@ -11,7 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { TomesComponentComponent } from './components/tomes-component/tomes-component.component';
 import { MecancomaterialComponent } from './components/mecancomaterial/mecancomaterial.component';
 import { HttpClientModule } from '@angular/common/http';
-import {  FormsModule } from '@angular/forms';
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewAceptComponent } from './components/view-acept/view-acept.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SesionComponent } from './components/sesion/sesion.component';
@@ -49,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
