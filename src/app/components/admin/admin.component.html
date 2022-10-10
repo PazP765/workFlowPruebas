@@ -210,21 +210,24 @@
     <!-- Apartado de agregar y ver mecanico-->
     <div class="tab-pane fade" id="nav-mecanico" role="tabpanel" aria-labelledby="nav-mecanico-tab">
     <h6>Mecánico</h6>
-
-    <div class="row g-3">
-      <div class="col-sm-3">
-
-
-        <input type="text" class="form-control" placeholder="Nómina" aria-label="nomina" [(ngModel)]="serviceModelMecanico.nomina">
+    <form ngNativeValidate (submit)="onAddSolicitudMecanico(serviceModelMecanico)" class="row g-3">
+      <div class="row g-3">
+        <div class="col-sm-3">
+  
+  
+          <input type="text" class="form-control" placeholder="Nómina" aria-label="nomina" name="nomina" id="txtNomina" [(ngModel)]="serviceModelMecanico.nomina" required>
+        </div>
+        <div class="col-sm">
+          <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Nombre" aria-label="nombre" name="nombre" id="txtNombre" [(ngModel)]="serviceModelMecanico.nombre" required>
+        </div>
+  
+        <div class="col-sm">
+          <button class="btn btn-success" type="button" (click)="onAddSolicitudMecanico(serviceModelMecanico)" >Agregar</button>
+         
+        </div>
       </div>
-      <div class="col-sm">
-        <input type="text" class="form-control" placeholder="Nombre" aria-label="nombre" [(ngModel)]="serviceModelMecanico.nombre">
-      </div>
-
-      <div class="col-sm">
-        <button class="btn btn-success" type="button" (click)="onAddSolicitudMecanico(serviceModelMecanico)">Agregar</button>
-      </div>
-    </div>
+    </form>
+    
 
 
       <table class="table caption-top">

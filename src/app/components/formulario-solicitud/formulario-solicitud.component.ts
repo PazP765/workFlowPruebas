@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceModel } from 'src/app/models/serviceModel';
 import { ServiceModelArea } from 'src/app/models/serviceModelArea';
-import { ServiceModelMecanico } from 'src/app/models/serviceModelMecanico';
 import { ServiceModelMaquina } from 'src/app/models/serviceModelMaquina';
 import { ServiceModelDispositivo } from 'src/app/models/serviceModelDispositivo';
-import { NgModule } from '@angular/core';
 import { DBConectionService } from 'src/app/services/dbconection.service';
 import { CargarScriptsService } from '../../services/cargar-scripts.service';
 import Swal from 'sweetalert2'
