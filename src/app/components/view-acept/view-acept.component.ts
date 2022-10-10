@@ -16,6 +16,7 @@ export class ViewAceptComponent implements OnInit {
   datatable: any = []
   serviceModel: ServiceModel = new ServiceModel()
 
+  datatableUsuarios: any = []
 
   constructor(private toastr: ToastrService,_CargarScriptsService: CargarScriptsService, public route: ActivatedRoute, private router: Router, private dBConectionService: DBConectionService, private modalService: BsModalService) {
 _CargarScriptsService.carga(['time'])
@@ -40,7 +41,7 @@ _CargarScriptsService.carga(['time'])
 
     })
 
-
+this.onDataTableUsuarios()
 
   }
   public getInputValue(inputValue:string){
@@ -91,6 +92,9 @@ _CargarScriptsService.carga(['time'])
   openModal(template: TemplateRef<any>) {
     this.bsModalRef = this.modalService.show(template)
   }
+  openModal1(template1: TemplateRef<any>) {
+    this.bsModalRef = this.modalService.show(template1)
+  }
 
   
 
@@ -104,10 +108,31 @@ _CargarScriptsService.carga(['time'])
 
     });
   }
-
+  onDataTableUsuarios(){
+    this.dBConectionService.getSolicitudMecanicos().subscribe(res=>{
+  this.datatableUsuarios=res;
+  console.log(this.datatableUsuarios)
+    });
+  }
   onUpdateSalida(serviceModel: ServiceModel): void {
   //  serviceModel.nomina2= parseInt((document.getElementById('txtNomina2') as HTMLInputElement).value)
-  this.dBConectionService.addDiagnostico(serviceModel.idSolicitud, serviceModel)
+  let valor='i'
+  let valor2
+  let valor3=(document.getElementById('txtNomina1') as HTMLInputElement).value
+  for(let item of this.datatableUsuarios){
+   valor2=item.nomina
+ 
+    if((document.getElementById('txtNomina1') as HTMLInputElement).value === valor2  ){
+    valor='existe'
+    console.log('nohi')
+    }
+    else{
+      console.log('hi',valor3,'valor',valor2)
+    }
+        
+  }
+  if(valor==='existe'){
+    this.dBConectionService.addDiagnostico(serviceModel.idSolicitud, serviceModel)
     .subscribe((res) => {
       if (res) {
         Swal.fire({
@@ -135,7 +160,12 @@ _CargarScriptsService.carga(['time'])
       }
     })
   
+  }else{
+    this.toastr.error('Número de nomina no encontrado!');
+
  
+  }
+  
 }
 onTerm(){
   this.toastr.error('Esta solicitud ya ha sido cerrada!');

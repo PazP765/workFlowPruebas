@@ -41,6 +41,10 @@ export class DBConectionService {
     return this.http.get(this.urlServices+'solicituddispositivo');
 
    }
+   getSolicitudMecanicos(){
+    return this.http.get(this.urlServices+'Solicitudmecanicos');
+
+   }
    /**filtrar nomina 1 */
    getSolicitudSM(id_Solicitud: string){
     return this.http.get(this.urlServices+'solicitud6'+ `/${id_Solicitud}`);
@@ -66,6 +70,7 @@ export class DBConectionService {
   addMecanico(serviceModelMecanico:ServiceModelMecanico): Observable <ServiceModelMecanico> {
     return this.http.post<ServiceModelMecanico>(this.urlServices +'Solicitudmecanicos', serviceModelMecanico)
   }
+
 
   addMaquina(serviceModelMaquina:ServiceModelMaquina): Observable <ServiceModelMaquina> {
     return this.http.post<ServiceModelMaquina>(this.urlServices +'Solicitudmaquina', serviceModelMaquina)

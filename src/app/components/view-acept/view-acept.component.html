@@ -121,7 +121,7 @@
         <button
         type="submit"
         class="btnenvia btn btn-warning btn.lg"
-        (click)="onSetData(item); openModal(template);"
+        (click)="onSetData(item); openModal1(template1);"
       >
         <i class="fas fa-paper-plane"></i>
         Reasignar solicitud
@@ -147,23 +147,13 @@
 </div>
 <br>
 <form class="rounded mb-0 m-4 p-4 needs-validation novalidate" >
-  <div *ngIf="serviceModel.nomina === 0; then thenBlock3 else elseBlock3"></div>
-  <ng-template #thenBlock3>
+ 
     <h6 ><i class="fas fa-info-circle"></i> Coloca tú número de nómina para continuar</h6>
     <div class="input-group input-group-sm mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-sm"><i class
-        
-        ="fas fa-clipboard"></i> </span>
-      <input type="number" class="form-control" placeholder="Coloque su nómina" name="Nomina" id="txtNomina" [(ngModel)]="serviceModel.nomina">
-    </div>
-  </ng-template>
-  <ng-template #elseBlock3>
-    <h6 ><i class="fas fa-info-circle"></i> Coloca tú número de nómina para reasignar</h6>
-    <div class="input-group input-group-sm mb-3">
       <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-clipboard"></i> </span>
-      <input type="number" class="form-control" placeholder="Coloque su nómina" name="Nomina" id="txtNomina" [(ngModel)]="serviceModel.nomina">
+      <input type="text" class="form-control" placeholder="Coloque su nómina" name="txtNomina1" id="txtNomina1" [(ngModel)]="serviceModel.nomina">
     </div>
-  </ng-template>
+  
 
 </form>
   <button class="btn btn-primary"  (click)="onUpdateSalida(serviceModel); saveSomeThing() ">Confirmar</button> 
@@ -194,7 +184,34 @@
   <br>
   
   </ng-template> -->
-
+  <ng-template class="wrapper bg-white" #template1>
+    <div class="modal-header">
+      <div class="h6 text-muted text-center pt-2"  *ngFor="let item of datatable"><i class="fa-solid fa-triangle-exclamation triangle"></i>Tomar la solicitud. <b style="color: red;">{{item.idSolicitud}}</b></div>
+      <button
+        type="button"
+        class="close pull-rigth"
+        aria-label="Close"
+        (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <br>
+    <form class="rounded mb-0 m-4 p-4 needs-validation novalidate" >
+     
+        <h6 ><i class="fas fa-info-circle"></i> Coloca tú número de nómina para reasignar</h6>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm"><i class
+            
+            ="fas fa-clipboard"></i> </span>
+          <input type="number" class="form-control" placeholder="Coloque su nómina" name="Nomina1" id="txtNomina1" [(ngModel)]="serviceModel.nomina2">
+        </div>
+      
+    
+    </form>
+      <button class="btn btn-primary"  (click)="onUpdateSalida(serviceModel); saveSomeThing() ">Confirmar</button> 
+    <br>
+    
+    </ng-template>
 </div>
 
 
