@@ -12,7 +12,7 @@
 <!--nav-->
 <nav class=" navbar nav1" style="z-index: 5;" >
   
-  <a class="navbar-brand" href="#" ><img src="assets/img/logo_bioflex-01.png" style="height: 40px;" alt=""></a>
+  <a class="navbar-brand" href="#" ><img src="assets/img/logo_bioflex-01.png" style="height: 40px;" alt="" (click)="OnClickExit()"></a>
   <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -37,26 +37,7 @@
             </button>
           </h2>
           <hr>
-          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-            
-            <li class=" active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" style="margin-left: 0.5cm;"
-            type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-border-all"></i> Filtro de solicitudes</li>
-      
-            
-            <li class="" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" style="margin-left: 0.5cm;"
-            type="button" role="tab" aria-controls="nav-contact" aria-selected="false"  ><i class="fas fa-map-marked-alt"></i> Agregar Area</li>
-      
-      
-            <li class="" id="nav-machine-tab" data-bs-toggle="tab" data-bs-target="#nav-machine" style="margin-left: 0.5cm;"
-            type="button" role="tab" aria-controls="nav-machine" aria-selected="false"><i class="fas fa-cog"></i> Agregar Maquina</li>
-      
-            <li class="" id="nav-dispositivo-tab" data-bs-toggle="tab" data-bs-target="#nav-dispositivo" style="margin-left: 0.5cm;"
-            type="button" role="tab" aria-controls="nav-dispositivo" aria-selected="false"><i class="fas fa-microchip"></i> Agregar Dispositivo</li>
-
-            <li class="" id="nav-mecanico-tab" data-bs-toggle="tab" data-bs-target="#nav-mecanico" style="margin-left: 0.5cm;"
-            type="button" role="tab" aria-controls="nav-mecanico" aria-selected="false"><i class="fas fa-user-plus"></i> Agregar mecanico</li>
-
-          </div>
+       
         </div>
 
         
@@ -65,8 +46,8 @@
        <!--1-->
        
        
-        <li class="nav-item">
-          <a class="nav-link" style="cursor: pointer" href="#" ><img src="assets/img/logout.png"  style=" height: 25px;">Volver al inicio</a>
+        <li class="nav-item" (click)="OnClickExit()">
+          <a class="nav-link" style="cursor: pointer" href="#" ><img src="assets/img/logout.png"  style=" height: 25px;" >Volver al inicio</a>
         </li>
       </ul>
    </div>
@@ -89,35 +70,7 @@
 
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       
-<nav class="navbar navbar-expand-lg bg-light" style="z-index: 3;">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-          <div class="input-group mb-3"><form  role="search">
-              <input class="form-control me-2 mb-3" type="search" placeholder="Buscar..." name="search2" [(ngModel)]="searchText">
-            </form> </div>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Fitrar por fechas
-          </a>
-          <ul class="dropdown-menu">
-              <li> <a class="dropdown-item">Al día:<input type="date"></a></li>
-              <li> <a class="dropdown-item">Hasta:<input type="date"></a></li>
-          </ul>
-        </li>
-        <div class="input-group mb-3" >
-          <form class="d-flex" ngNativeValidate (ngSubmit)="saveSomeThing()">
-              <button class="btn btn-outline-secondary me-2 mb-3" type="submit" id="button-addon2"><i class="fas fa-download"></i></button>
-          <input type="text" class="form-control  mb-3"  id="txtNamed" name="txtNamed" type="text" placeholder="Nombre del excel"  required>
-      </form>
-      </div>
-      </ul>
-    </div>
-  </div>
-</nav>
+
 <br>
       <div class="table-responsive tab-pane fade show active">
         <h6>Solicitudes</h6>

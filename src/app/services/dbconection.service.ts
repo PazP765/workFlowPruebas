@@ -13,7 +13,7 @@ import { ServiceModelDispositivo } from '../models/serviceModelDispositivo';
 export class DBConectionService {
   constructor(private http: HttpClient) {}
 
-  urlServices:string="https://localhost:44347/api/";
+  urlServices:string="http://172.16.200.115:8085/api/";
   //172.16.200.95:8083
   
   getSolicitud(){

@@ -9,6 +9,7 @@ import { DBConectionService } from 'src/app/services/dbconection.service';
 import * as XLSX from 'xlsx';
 import Swal from 'sweetalert2'
 import { ToastrService } from 'ngx-toastr';
+import { OuthService } from 'src/app/services/outh.service';
 @Component({
   selector: 'app-supervisa-areas',
   templateUrl: './supervisa-areas.component.html',
@@ -49,7 +50,7 @@ export class SupervisaAreasComponent implements OnInit {
   datatableUsuarios: any = []
   public page:number=0
   public search:string='';
-  constructor(private toastr: ToastrService,private modalService: BsModalService,public route: ActivatedRoute,private router: Router,private dBConectionService: DBConectionService) { }
+  constructor(private authService: OuthService,private toastr: ToastrService,private modalService: BsModalService,public route: ActivatedRoute,private router: Router,private dBConectionService: DBConectionService) { }
 
   ngOnInit(): void {
     this.sinFiltros();
@@ -242,5 +243,7 @@ previousPage(){
   this.page-=5;
   
 }
-
+OnClickExit(){
+  this.authService.logoutAdmin()
+}
 }

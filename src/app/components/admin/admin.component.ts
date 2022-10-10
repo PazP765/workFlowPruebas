@@ -12,6 +12,7 @@ import { ServiceModelDispositivo} from 'src/app/models/serviceModelDispositivo';
 import Swal from 'sweetalert2'
 import { NgModule } from '@angular/core';
 import * as XLSX from 'xlsx';
+import { OuthService } from 'src/app/services/outh.service';
 
 
 @Component({
@@ -50,7 +51,7 @@ export class AdminComponent implements OnInit {
   datatable3: any = []
   datatable4: any = []
   datatable5: any = []
-  constructor(  public route: ActivatedRoute,private router: Router,private dBConectionService: DBConectionService,_CargarScriptsService:CargarScriptsService) { _CargarScriptsService.carga(['time']), _CargarScriptsService.carga(['NabBarFunctions'])}
+  constructor(private Outh:OuthService,public route: ActivatedRoute,private router: Router,private dBConectionService: DBConectionService,_CargarScriptsService:CargarScriptsService) { _CargarScriptsService.carga(['time']), _CargarScriptsService.carga(['NabBarFunctions'])}
   ngOnInit(): void {
 
     this.onDataTable();
@@ -111,8 +112,8 @@ export class AdminComponent implements OnInit {
   console.log(this.maqunasAreas)
     });
   }
-onClikClosed(){
-  
+  OnClickExit(){
+    this.Outh.logoutAdmin()
 }
   onAddSolicitud(serviceModelArea: ServiceModelArea): void {
     this.dBConectionService.addArea(serviceModelArea).subscribe((res) => {

@@ -12,7 +12,7 @@
 <!--nav-->
 <nav class=" navbar nav1" style="z-index: 5;" >
   
-  <a class="navbar-brand" href="#" ><img src="assets/img/logo_bioflex-01.png" style="height: 40px;" alt=""></a>
+  <a class="navbar-brand" href="#" ><img src="assets/img/logo_bioflex-01.png" style="height: 40px;" alt=""(click)="OnClickExit()"></a>
   <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -65,8 +65,8 @@
        <!--1-->
        
        
-        <li class="nav-item">
-          <a class="nav-link" style="cursor: pointer" href="#" ><img src="assets/img/logout.png"  style=" height: 25px;">Volver al inicio</a>
+        <li class="nav-item" (click)="OnClickExit()">
+          <a class="nav-link" style="cursor: pointer" href="#" ><img src="assets/img/logout.png"  style=" height: 25px;" >Volver al inicio</a>
         </li>
       </ul>
    </div>

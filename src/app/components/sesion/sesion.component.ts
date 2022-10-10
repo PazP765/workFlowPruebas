@@ -52,7 +52,7 @@ get toolsFormArray() {
   return this.formtools.controls['tools'] as FormArray;
 }
 //heramientas
-  constructor(private formBuilder: FormBuilder, _CargarScriptsService: CargarScriptsService, public route: ActivatedRoute, private router: Router, private dBConectionService: DBConectionService, private modalService: BsModalService) {
+  constructor(private formBuilder: FormBuilder, public route: ActivatedRoute, private router: Router, private dBConectionService: DBConectionService, private modalService: BsModalService) {
     
     this.form = this.formBuilder.group({
       orders: new FormArray([])
@@ -211,7 +211,9 @@ public getInputValue(inputValue:string){
   
 
 }
+logOut(){
 
+}
 
   onUpdateSalida(serviceModel: ServiceModel): void {
     const selectedOrderIds = this.form.value.orders
