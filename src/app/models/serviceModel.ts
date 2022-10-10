@@ -16,7 +16,7 @@ export class ServiceModel {
     
     dispositivo:String=''
     
-    descripcionProblema :String=''
+    descripcionProblema :String=''/**5 */
     
     nomina :number=0
     
@@ -26,7 +26,7 @@ export class ServiceModel {
     
     horaInicio :String=''
     
-    diagnostico:String=''
+    diagnostico:String=''/**1 */
     
     tipoFalla :String=''
     
@@ -50,7 +50,9 @@ export class ServiceModel {
     
     grasaUtilizada:String=''
     
-    refaMateHerra :String=''
+    refaMateHerra :String=''/**3 */
+
+    tareasEjecutadas :String=''/**2 */
     
     fechaFinal :String=''
     

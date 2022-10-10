@@ -12,6 +12,8 @@ import { RevisionFinComponent } from './components/revision-fin/revision-fin.com
 import { AdminComponent} from "./components/admin/admin.component";
 import { AdminLogGuard } from './guards/admin-log.guard';
 import { SupervisaAreasComponent } from './components/supervisa-areas/supervisa-areas.component';
+import { LoginSupervisorComponent } from './components/login-supervisor/login-supervisor.component';
+import { SupervisorLogGuard } from './guards/supervisor-log.guard';
 
 const routes: Routes = [
   {
@@ -47,7 +49,10 @@ const routes: Routes = [
     path:'supervisor',component:AdminComponent,canActivate:[AdminLogGuard]
   },
   {
-    path:'supervisorA',component:SupervisaAreasComponent,canActivate:[AdminLogGuard]
+    path:'supervisorA',component:SupervisaAreasComponent,canActivate:[SupervisorLogGuard]
+  },
+  {
+    path:'login2',component:LoginSupervisorComponent
   }
 ];
 

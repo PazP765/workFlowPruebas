@@ -24,6 +24,7 @@ import { AscDescPipe } from './pipes/asc-desc.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginSupervisorComponent } from './components/login-supervisor/login-supervisor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SupervisaAreasComponent,
     FilterRangePipe,
     AscDescPipe,
+    LoginSupervisorComponent,
    
   ],
   imports: [

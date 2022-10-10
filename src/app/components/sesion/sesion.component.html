@@ -67,21 +67,55 @@
 <!--tarjetas-->
 <div class="page-wrapper" >
 <!-- ******Header****** --> 
+
 <section class="cards-section text-center"  *ngFor="let item of datatable">
+ 
 <div class="container">
+  
   <div class="card text-center border-dark text-bg-light">
     <div class="card-header ">
+      <div *ngIf="item.nomina2 ===0; then thenBlock10 else elseBlock10"></div>
+      <ng-template #thenBlock10><button class="btn btn-success" disabled style="font-size: 10px;">T1</button></ng-template>
+        
+      <ng-template #elseBlock10><button class="btn btn-danger" disabled style="font-size: 10px;">R/{{item.nombre2}}</button></ng-template>
       {{item.maquina}}/{{item.dispositivo}}
     </div>
     <div class="card-body">
       <h5 class="card-title">{{item.area}}</h5>
       <h6 class="card-title">Solicitado por: {{item.nombreSolicitante}}</h6>
       <p class="card-text">{{item.descripcionProblema}}</p>
-      <button class="btn btn-warning" (click)="onSetData(item); openModal(template);" >Diagnosticar</button>&nbsp;&nbsp;
-      <button class="btn btn-warning" (click)="onSetData(item);  openModal2(template2);" >Tareas ejecutadas</button>&nbsp;&nbsp;
-      <button class="btn btn-success" (click)="onSetData(item);  openModal3(template3);" >Cierre</button>
+      <div *ngIf="item.estatusActividad ==='Terminado'||item.estatusActividad ==='Cancelado'; then thenBlock7 else elseBlock7"></div>
+      <ng-template #thenBlock7>
+        <button class="btn btn-warning" (click)="onSetData(item);  openModal(template);" disabled>Diagnosticar</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="onSetData(item);  openModal2(template2);" disabled>Tareas ejecutadas</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="onSetData(item);  openModal25(template25);" disabled>Material utilizado</button>&nbsp;&nbsp;
+        <button class="btn btn-secundary" (click)="onSetData(item);  openModal3(template3);"   disabled>Cierre</button>
+      </ng-template>
+
+        <ng-template #elseBlock7>
+          <div *ngIf="item.diagnostico==='' || item.tipoFalla===''|| item.tareasEjecutadas===''||item.generoParo===''||item.tiempoTotal===''||item.refaMateHerra===''||item.grasaUtilizada===''; then thenBlocr else elseBlocr"></div>
+      
+          <ng-template #thenBlocr>
+            <button class="btn btn-warning" (click)="onSetData(item);  openModal(template);" >Diagnosticar</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="onSetData(item);  openModal2(template2);" >Tareas ejecutadas</button>&nbsp;&nbsp;
+        <button class="btn btn-warning" (click)="onSetData(item);  openModal25(template25);" >Material utilizado</button>&nbsp;&nbsp;
+            <button class="btn btn-secundary" (click)="onSetData(item);  openModal3(template3);"  disabled >Cierre</button>
+          </ng-template>
+          <ng-template #elseBlocr>
+            <button class="btn btn-warning" (click)="onSetData(item);  openModal(template);" disabled>Diagnosticar</button>&nbsp;&nbsp;
+            <button class="btn btn-warning" (click)="onSetData(item);  openModal2(template2);" disabled>Tareas ejecutadas</button>&nbsp;&nbsp;
+            <button class="btn btn-warning" (click)="onSetData(item);  openModal25(template25);" disabled>Material utilizado</button>&nbsp;&nbsp;
+          <button class="btn btn-success" (click)="onSetData(item);  openModal3(template3);" >Cierre</button>
+    
+          </ng-template>
+
+        </ng-template>
+   
+      
+   
     </div>
     <div class="card-footer text-muted">
+      Numero:  {{item.idSolicitud}} /
       {{item.fechaSolicitud}}
     </div>
   </div>
@@ -99,7 +133,7 @@
   <ng-template class="wrapper bg-white" #template>
    
     <div class="modal-header">
-      <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Diagnoticar. <b [(ngModel)]="serviceModel.idSolicitud" id="mostrarId" name="mostrarId" style="color: red;">{{ serviceModel.idSolicitud }}</b></div>
+      <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Diagnoticar. <b id="mostrarId" name="mostrarId" style="color: red;">{{ serviceModel.idSolicitud }}</b></div>
       <button
         type="button"
         class="close pull-rigth"
@@ -124,19 +158,21 @@
         <textarea type="text" class="form-control" placeholder="Diagnóstico (descripción)" name="descDiag" id="txtdesDiag" [(ngModel)]="serviceModel.diagnostico"></textarea>
       </div>
       <hr>
-    
-      <input type="text" id="area" name="flexCheckDefault" [(ngModel)]="serviceModel.tipoFalla">
+    <br>
+
+      <form [formGroup]="form" >
+     <label for="basic-url" class="form-label"><b>Tipo de falla: </b></label>
        
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="2" id="flexCheckDefault" />
-        <label class="form-check-label" for="flexCheckDefault">Default checkbox</label>
-      </div>
-      
-      <!-- Checked checkbox -->
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" for="area" value="1" id="flexCheckChecked" />
-        <label class="form-check-label" for="flexCheckChecked" value="1" >Checked checkbox</label>
-      </div>
+
+        <div class="form-check" formArrayName="orders" *ngFor="let order of ordersFormArray.controls; let i = index">
+
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"[formControlName]="i" >{{ordersData[i].name}}
+          <label class="form-check-label" >
+         
+          </label>
+        </div>
+       
+      </form>
   <br>
       
 </form>
@@ -151,7 +187,7 @@
             
    <div class="d-grid gap-2">
     <!-- <button type="button" class="btn btn-success btn.lg" (click)="onSetData(); onAddSolicitud(solicitud)"><i class="fas fa-paper-plane"></i> Solicitar</button> -->
-    <button type="submit" class="btnenvia btn btn-primary btn.lg" (click)=" onSetData(serviceModel);   onUpdateSalida(serviceModel); saveSomeThing()"
+    <button type="button" class="btnenvia btn btn-primary btn.lg" (click)="onSetData(serviceModel);   onUpdateSalida(serviceModel); saveSomeThing()"
     >
       <i class="fas fa-paper-plane"></i>
       Enviar diagnóstico
@@ -167,7 +203,7 @@
   <!--modal para  salida de activo-->
   <ng-template class="wrapper bg-white" #template2>
     <div class="modal-header">
-      <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Tareas. <b [(ngModel)]="serviceModel.idSolicitud" id="mostrarId" name="mostrarId" style="color: red;">{{ serviceModel.idSolicitud }}</b></div>
+      <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Tareas. <b  id="mostrarId" name="mostrarId" style="color: red;">{{ serviceModel.idSolicitud }}</b></div>
       <button
         type="button"
         class="close pull-rigth"
@@ -181,7 +217,7 @@
     <label for="basic-url" class="form-label"><b>Descripción de las tareas:</b></label>
     <div class="input-group input-group-sm mb-3">
       <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-pen-nib"></i></span>
-      <textarea type="text" class="form-control" placeholder="Tareas (descripción)" id="dc" name="dc" [(ngModel)]="serviceModel.descripcionProblema" required></textarea>
+      <textarea type="text" class="form-control" placeholder="Tareas (descripción)" id="dc" name="dc" [(ngModel)]="serviceModel.tareasEjecutadas" required></textarea>
     </div>
     <hr>
     <label for="basic-url" class="form-label"><b>¿Genero paro de maquina?</b></label>
@@ -223,7 +259,7 @@
     <button
         type="submit"
         class="btnenvia btn btn-primary btn.lg"
-        (click)=" onSetData(serviceModel);   onUpdateSalida3(serviceModel); saveSomeThing()"
+        (click)="onSetData(serviceModel); onUpdateSalida3(serviceModel); saveSomeThing()"
         
       >
       <i class="fa-solid fa-floppy-disk"></i>
@@ -239,7 +275,7 @@
 
   <ng-template class="wrapper bg-white" #template3>
     <div class="modal-header">
-      <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Cierre:<b [(ngModel)]="serviceModel.idSolicitud" id="mostrarId" name="mostrarId" style="color: red;">{{ serviceModel.idSolicitud }}</b></div>
+      <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Cierre:<b  id="mostrarId" name="mostrarId" style="color: red;">{{ serviceModel.idSolicitud }}</b></div>
       <button
         type="button"
         class="close pull-rigth"
@@ -321,3 +357,55 @@
 
 
 
+<ng-template class="wrapper bg-white" #template25>
+  <div class="modal-header">
+    <div class="h6 text-muted text-center pt-2" ><i class="fa-solid fa-triangle-exclamation triangle"></i>Material utilizado <b  id="mostrarId" name="mostrarId" style="color: red;">{{ serviceModel.idSolicitud }}</b></div>
+    <button
+      type="button"
+      class="close pull-rigth"
+      aria-label="Close"
+      (click)="bsModalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>  
+<form class="rounded mb-0 m-4 p-4 needs-validation novalidate "  >
+  <label for="basic-url" class="form-label"><b>Herramienta utilizada:</b></label>
+  <div class="input-group input-group-sm mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-pen-nib"></i></span>
+    <textarea type="text" class="form-control" placeholder="Describe la herramienta" id="dc" name="dc" [(ngModel)]="serviceModel.refaMateHerra" required></textarea>
+  </div>
+  
+  <hr>
+  <label for="basic-url" class="form-label"><b>Grasa utilizada:</b></label><br>
+  <form [formGroup]="formtools" >
+
+       <div class="form-check" formArrayName="tools" *ngFor="let tool of toolsFormArray.controls; let e = index">
+
+         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" [formControlName]="e" >{{toolsData[e].name1}}
+         <label class="form-check-label" >
+        
+         </label>
+       </div>
+      
+     </form>
+</form>
+
+  <!--inicio-->
+ <!-- <div class="h2 text-center">Creativity</div>-->    
+ <div class="d-grid gap-2">
+  <!-- <button type="button" class="btn btn-success btn.lg" (click)="onSetData(); onAddSolicitud(solicitud)"><i class="fas fa-paper-plane"></i> Solicitar</button> -->
+  <button
+      type="submit"
+      class="btnenvia btn btn-primary btn.lg"
+      (click)=" onSetData(serviceModel);   onUpdateSalida4(serviceModel); saveSomeThing()"
+      
+    >
+    <i class="fa-solid fa-floppy-disk"></i>
+      Guardar<i class="fa-solid fa-angle-right"></i>
+    </button>
+ 
+</div>
+  <!--fin-->
+</ng-template>
+<!--modal para  salida de activo-->

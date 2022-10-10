@@ -8,12 +8,14 @@ import { ServiceModelMecanico } from 'src/app/models/serviceModelMecanico';
 import { DBConectionService } from 'src/app/services/dbconection.service';
 import * as XLSX from 'xlsx';
 import Swal from 'sweetalert2'
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-supervisa-areas',
   templateUrl: './supervisa-areas.component.html',
   styleUrls: ['./supervisa-areas.component.css']
 })
 export class SupervisaAreasComponent implements OnInit {
+  sevicemodelA!:ServiceModel[]
   bsModalRef: BsModalRef = new BsModalRef()
   searchText:any
   searchTextID: any;
@@ -44,9 +46,10 @@ export class SupervisaAreasComponent implements OnInit {
   datatable2: any = []
   datatable3: any = []
   datatable4: any = []
+  datatableUsuarios: any = []
   public page:number=0
   public search:string='';
-  constructor(private modalService: BsModalService,public route: ActivatedRoute,private router: Router,private dBConectionService: DBConectionService) { }
+  constructor(private toastr: ToastrService,private modalService: BsModalService,public route: ActivatedRoute,private router: Router,private dBConectionService: DBConectionService) { }
 
   ngOnInit(): void {
     this.sinFiltros();
@@ -56,6 +59,7 @@ export class SupervisaAreasComponent implements OnInit {
     this.onDataTable4();
     this.onDataTable5();
     this.onDataTable6();
+    this.onDataTableUsuarios()
   }
   onDataTable(){
     this.dBConectionService.getSolicitud().subscribe(res=>{
@@ -91,14 +95,13 @@ export class SupervisaAreasComponent implements OnInit {
     
     this.dBConectionService.getSolicitudArea().subscribe(res=>{
   this.areas=res;
-  console.log(this.maqunasAreas)
+  
     });
   }
   onDataTable6(){
     
     this.dBConectionService.getSolicitudMaquina().subscribe(res=>{
   this.maqunasAreas=res;
-  console.log(this.maqunasAreas)
     });
   }
  
@@ -107,9 +110,16 @@ export class SupervisaAreasComponent implements OnInit {
   this.datatable4=res;
     });
   }
+  
+  onDataTableUsuarios(){
+    this.dBConectionService.getUsuarios().subscribe(res=>{
+  this.datatableUsuarios=res;
+  console.log(this.datatableUsuarios)
+    });
+  }
 
 //   onSearch() {
-//     fechasFiltradas = this.myDates
+//   usuarios  fechasFiltradas = this.myDates
 //            .filter((date: Date) => pickerDate.getTime() < date.getTime() < pickerDate2.getTime());
 //  }
 
@@ -172,35 +182,56 @@ onSetData(select: any) {
   }
   
   onUpdateSalida(serviceModel: ServiceModel): void {
-    //  serviceModel.nomina2= parseInt((document.getElementById('txtNomina2') as HTMLInputElement).value)
+    let valor='i'
+    let valor2
+    for(let item of this.datatableUsuarios){
+     valor2=item.nombre3
+      if( (document.getElementById('txtfirma') as HTMLInputElement).value === valor2){
+      valor='existe'
+      }
+          
+    }
+    if(valor==='existe'){
+      //  serviceModel.nomina2= parseInt((document.getElementById('txtNomina2') as HTMLInputElement).value)
     this.dBConectionService.addRevision(serviceModel.idSolicitud, serviceModel)
-      .subscribe((res) => {
-        if (res) {
-          Swal.fire({
-            title: 'Operación realizada con éxito',
-            text: "¡¡Presione el botón para confirmar!!",
-            icon: 'info',
-            showCancelButton: false,
-            confirmButtonColor: 'rgb(255, 194, 28)',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ok,volver'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire(
-                'Operación realizada.!',
-                'Notificación enviada.',
-                'success',
+    .subscribe((res) => {
+      if (res) {
+        Swal.fire({
+          title: 'Operación realizada con éxito',
+          text: "¡¡Presione el botón para confirmar!!",
+          icon: 'info',
+          showCancelButton: false,
+          confirmButtonColor: 'rgb(255, 194, 28)',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok,volver'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Operación realizada.!',
+              'Notificación enviada.',
+              'success',
+
+            )
+            this.onDataTable();
+            this.onDataTable2();
+            this.onDataTable3();
+            this.onDataTable4();
+            this.onDataTable5();
+            this.onDataTable6();
+          }
+        })
+      
+      } else {
+        alert('Error! :(')
+      }
+    })
   
-              )
-  
-            }
-          })
-          console.log('nada', serviceModel.firmaSolicitante)
-        } else {
-          alert('Error! :(')
-        }
-      })
-    
+     
+    }else{
+      this.toastr.error('Número de nomina no encontrado!');
+ 
+   
+    }
    
   }
 nextPage(){

@@ -149,6 +149,7 @@
                <th class="cabezaras">tiempo Paro Operativo</th>
                <th class="cabezaras">Paro Refacción</th>
                <th class="cabezaras">Tiempo Total</th>
+               <th class="cabezaras">Tareas ejecutadas</th>
                <th class="cabezaras">Grasas</th>
                <th class="cabezaras">Material Usado</th>
                <th class="cabezaras">Fecha Cierre</th>
@@ -191,6 +192,7 @@
                  <th scope="row">{{item.paroOperativo}}</th>
                  <th scope="row">{{item.paroRefaccion}}</th>
                  <th scope="row">{{item.tiempoTotal}}</th>
+                 <th scope="row">{{item.tareasEjecutadas}}</th>
                  <th scope="row">{{item.grasaUtilizada}}</th>
                  <th scope="row">{{item.refaMateHerra}}</th>
                  <th scope="row">{{item.fechaFinal}}</th>
@@ -199,24 +201,27 @@
                  <th scope="row">{{item.estatusActividad}}</th>
                  <th scope="row">{{item.firmaSolicitante}}</th>
                  <div *ngIf="item.estatusActividad ==='Terminado'; then thenBlock else elseBlock"></div>
+                 
                  <ng-template #thenBlock> 
 
-                  <div *ngIf="item.firmaSolicitante!==0; then thenBlock1 else elseBlock1"></div>
+                  <div *ngIf="item.firmaSolicitante==='0'; then thenBlock1 else elseBlock1"></div>
                   <ng-template #thenBlock1> 
-                    <th><button type="button" class="btn btn-danger" (click)="onSetData(item); openModal(template);"
-                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" disabled>firmada</button></th>
-                   
+                    <th><button type="button" class="btn btn-primary" (click)="onSetData(item); openModal(template);"
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Firmar</button></th>
+                     
                   </ng-template>
                   <ng-template #elseBlock1>
-                    <th><button type="button" class="btn btn-primary" (click)="onSetData(item); openModal(template);"
-                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >firmar</button></th>
-                     
+                    <th><button type="button" class="btn btn-danger" (click)="onSetData(item); openModal(template);"
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" disabled>Firmada</button></th>
+                   
+                   
                   </ng-template>
 
                   
                   </ng-template>
 
                  <ng-template #elseBlock> 
+
                   <th><button type="button" class="btn btn-primary" (click)="onSetData(item); openModal(template);"
 
                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" disabled
